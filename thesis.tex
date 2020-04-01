@@ -4,7 +4,7 @@
 
 
 % milyen nyelveken akarunk forráskódot megjeleníteni
-\lstloadlanguages{Java,C++}
+\lstloadlanguages{Python}
 % más lehetőségek:
 % C, Matlab, Mathematica, Octave, Pascal, Perl, Python
 % SCilab, SQL, Haskell, Lisp, Lua, make, ML, PHP, Prolog
@@ -13,7 +13,7 @@
 
 
 % ezt be lehet tenni MINDEGYIK megjelenítendő kód elé opcióként
-\lstset{language=Java}
+\lstset{language=Python}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,17 +22,17 @@
 
 %% MELYIK ÉVBEN ADJUK LE
 \submityear{%
-2018
+2020
 }
 
 \titleHU{%
-Szakdolgozat cím
+Kritikus csomópontok meghatározása komplex hálózatokban
 }
 
 % Az alábbi sorokat ki kell tölteni!!
 
 \titleEN{%
-License thesis title
+Critical node detection problem in complex networks
 }
 
 \titleRO{%
@@ -40,27 +40,27 @@ Titlu lucrare licență
 }
 
 \author{%
-Gáspár Adalbert
+Béczi Eliézer
 }
 
 %%
 \tutorHU{%
-dr. Oktató Ottó,\newline egyetemi adjunktus\\
-% a hozzátartozás akkor szükség, ha NEM BBTE-s a tanár
+dr. Gaskó Noémi,\newline egyetemi adjunktus\\
+% a hozzátartozás akkor szükséges, ha NEM BBTE-s a tanár
 %{\large Babe\c{s}--Bolyai Tudományegyetem,\\
-% Matematika és Informatika Kar}% ha különbözik, akkor fel kell tûntetni
+% Matematika és Informatika Kar}% ha különbözik, akkor fel kell tűntetni
 }
 %%
 \tutorRO{%
-Lector dr. Hunor Jakab\\
-% az egyetem akkor szükség, ha nem BBTE-s a tanás, a minta a BBTE-t
+Lector dr. Gaskó Noémi\\
+% az egyetem akkor szükséges, ha nem BBTE-s a tanár, a minta a BBTE-t
 % tartalmazza
 % {\large Universitatea Babe\c{s}--Bolyai,\\ % dacã diferã!!!
 % Facultatea de Matematic\u{a} \c{s}i Informatic\u{a} }%
 }
 %%
 \tutorEN{%
-Assist prof. dr. Hunor Jakab
+Assist prof. dr. Gaskó Noémi
 % {\large Babe\c{s}--Bolyai University,\\
 % Faculty of Mathematics and Informatics}
 }
@@ -75,7 +75,7 @@ Assist prof. dr. Hunor Jakab
 %% ABSTRAKT
 \begin{abstractEN} % ANGOL VÁLTOZAT
 
-  % a lenti részt értelemszerûen ki kell tölteni a dolgozat angol kivonatával.
+  % a lenti részt értelemszerűen ki kell tölteni a dolgozat angol kivonatával.
   % A BEGIN ... END között CSAK A SAJÁT SZÖVEG kell, hogy legyen.
   % Az utolsó mondatot benne kell hagyni, mely által kijelentitek, hogy a munkátok SAJÁT.
 
@@ -127,20 +127,10 @@ Assist prof. dr. Hunor Jakab
 % ugyanis úgy jobban át lehet látni.
 
 
-% a bevezetõ fejezet FILE-ja.
+% a bevezető fejezet FILE-ja.
 \include{bevezet}
 
-\include{alapok}
-
-\include{elmelet}
-
-\include{gyakorlat}
-
-\include{elemzes}
-
-
-\appendix
-\include{programok}
+\include{chapters/introduction/introduction}
 
 
 { \renewcommand{\baselinestretch}{0.8}
