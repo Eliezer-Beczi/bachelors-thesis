@@ -1,35 +1,4 @@
-% !TeX root = ../../thesis.tex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Bevezető}\label{ch:BEVEZETO}
 
-Hálózatok terén nem minden csomópont egyforma fontosságú.
-A kulcsfontosságú csomópontok keresésével hálózatokban széles körben foglalkoznak,
-különösképpen olyan csomópontok esetén, melyek a hálózat konnektivitásához köthetők.
-Ezeket a csomópontokat általában úgy nevezzük, hogy Kritikus Csomópontok.
-
-Kritikus Csomópontok Meghatározásának Problémája (CNDP)
-egy optimalizációs feladat, amely egy olyan csoport csomópont
-megkereséséből áll, melyek törlése maximálisan rontja a hálózat
-konnektivitását bizonyos predefiniált konnektivitási metrikák szerint.
-
-A CNDP számos alkalmazási területtel rendelkezik.
-Például, közösségi hálók nagy befolyással bíró egyedeinek azonosítása,
-komputációs biológiában kapcsolatok definiálására jelút
-vagy fehérje-fehérje kölcsönhatás hálózatokban,
-smart grid sebezhetőségének azonosítása, egyének meghatározása
-védőoltással való ellátásra vagy karanténba való zárásra egy
-fertőzés terjedésének gátlása érdekében.
-
-A CNDP egy $\mathcal{N}\mathcal{P}$-teljes feladat. Adva van egy $G = (V, E)$ gráf, ahol $|V| = n$ a csomópontok száma,
-és $|E| = m$ pedig az élek száma. A feladat $K$ kritikus csomópont meghatározása, amelyek törlése a bemeneti
-gráfból minimalizálja a hálózat páronkénti konnektivitását. Az alapján, hogy mit értünk egy hálózat
-konnektivitása alatt, a CNDP-nak van egycélú illetve többcélú megfogalmazása is.
-
-Ebben a dolgozatban többek között egy bi-objektív megfogalmazásával fogunk foglalkozni a CNDP-nak.
-Hat standard evolúciós algoritmust (NSGAII, EpsMOEA, SPEA2, IBEA, PAES, EpsNSGAII) fogunk összehasonlítani
-egymással különböző szintetikus bemenetekre (Barabási-Albert, Watts-Strogatz, Forest Fire és Erdős-Rényi),
-illetve való világból inspirált bemenetekre, ugyanakkor célunk egy új hibrid algoritmus fejlesztése,
-melynek eredményei összehasonlíthatóak a standard algoritmusok eredményeivel.
-
-\input{chapters/introduction/single-objective-cndp}
-\input{chapters/introduction/bi-objective-cndp}
+\input{chapters/introduction/overview}
+\input{chapters/introduction/contributions}

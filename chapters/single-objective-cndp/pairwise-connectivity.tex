@@ -1,0 +1,21 @@
+\section{Páronkénti konnektivitás}\label{sec:PAIRWISE_CONNECTIVITY}
+
+Egycélú CNDP esetén a kihívás abban áll, hogy találjunk egy olyan konnektivitási metrikát,
+amely alkalmazási területtől függően megfelelően leírja egy gráf összefüggőségét.
+$S$-el fogjuk jelölni a törlendő csomópontok halmazát,
+míg az$f(S)$ jóságfüggvény fogja jellemezni a $G[V \setminus S]$ feszített részgráf összefüggőségét.
+$H$-val jelöljük a $G[V \setminus S]$ feszített részgráf összefüggő komponenseinek a halmazát.
+Így, a jóságfüggvény a következő képlettel írható le:
+\begin{equation}\label{eqn:PAIRWISE_CONNECTIVITY}
+  f(S) = \sum_{h \in H} \frac{|h| \cdot (|h| - 1)}{2},
+\end{equation}
+amelyet az irodalom \cite{ventresca2012global, aringhieri2016general} úgy tart számon,
+hogy páronkénti konnektivitás.
+Tehát a feladat \aref{eqn:PAIRWISE_CONNECTIVITY} függvénynek a minimalizálása:
+\begin{equation}\label{eqn:MIN_PAIRWISE_CONNECTIVITY}
+  \min_{S \subseteq V} f(S).
+\end{equation}
+
+\Aref{eqn:PAIRWISE_CONNECTIVITY} fitness függvény implementációját
+\aref{lst:PAIRWISE-CONNECTIVITY} kódrészlet szemlélteti Python-ban.
+\lstinputlisting[language={Python}, caption={Páronkénti konnektivitás}, label={lst:PAIRWISE-CONNECTIVITY}]{./progfiles/pairwise_connectivity.py}
