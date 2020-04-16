@@ -1,0 +1,40 @@
+\section{Mohó algoritmus}\label{sec:MOHO_ALGORITMUS}
+
+Egy mohó algoritmus egy egyszerű és intuitív algoritmus, amely gyakran használt
+optimalizációs feladatok megoldására. Az algoritmus helyi optimumok megvalósításával próbálja
+megtalálni a globális optimumot.
+
+Habár a mohó algoritmusok jól működnek bizonyos feladatok esetében,
+mint pl. Dijkstra-algoritmus, amely egy csomópontból kiindulva meghatározza a legrövidebb utakat,
+vagy Huffman-kódolás, amely adattömörítésre szolgál, de sok esetben nem eredményeznek optimális megoldást.
+Ez annak köszönhető, hogy míg a mohó algoritmus függhet az előző lépések választásától,
+addig a jövőben meghozott döntésektől független.
+
+Az algoritmus minden lépésben mohón választ, folyamatosan lebontva a feladatot kisebb feladattá.
+Más szavakkal, a mohó algoritmus soha nem gondolja újra választásait.
+
+A CNDP esetén a mohó algoritmust \aref{lst:GREEDY-ALGORITMUS} kódrészlet szemlélteti.
+\lstinputlisting[language={Python}, caption={Mohó algoritmus}, label={lst:GREEDY-ALGORITMUS}]{./progfiles/single-objective-cndp/greedy/greedy_algorithm.py}
+
+A mohó algoritmus kiindul a gráf csúcslefedéséből.
+\footnote{
+  Angolul: vertex cover.
+}
+Ez lesz a kezdeti $S$ megoldásunk.
+A maradék csomópontok $V \setminus S$  a gráf maximális független csúcshalmazát
+\footnote{
+  Angolul: maximal independent set.
+}
+\emph{MIS} alkotják.
+Mivel majdnem biztos, hogy $|S| > k$, ezért mohón elkezdünk kivenni csomópontokat $S$-ból,
+majd ezeket hozzáadni \emph{MIS}-hoz, amíg $|S| > k$.
+A hozzáadott csomópont az lesz, amelyiket ha visszatesszük az eredeti gráfba,
+akkor a minimum értéket téríti vissza a páronkénti konnektivitásra a keletkezett gráfban.
+
+Mivel több olyan csomópont lehet, amelyeket ha visszateszünk az eredeti gráfba,
+akkor ugyanazt a minimális értéket adják vissza a páronkénti konnektivitásra,
+ezért ezeket eltároljuk a B halmazban, és minden lépésben random módon határozzuk meg,
+hogy melyik kerüljön vissza a \emph{MIS}-ba.
+
+Ezzel az eljárással garantáljuk, hogy a mohó algoritmusunk különböző megoldásokat fog adni
+többszöri futtatások esetén.

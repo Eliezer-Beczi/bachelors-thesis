@@ -1,0 +1,16 @@
+\section{Genetikus algoritmus}\label{sec:GENETIKUS_ALGORITMUS}
+
+A genetikus algoritmus a metaheurisztikák osztályába tartozik, és a természetes kiválasztódás inspirálta.
+Egy globális optimalizáló, amely gyakran használt optimalizációs és keresési problémák esetében,
+ahol a sok lehetséges megoldás közül a legjobbat kell megkeresni.
+Azt hogy egy megoldás mennyire jó, a fitness függvény mondja meg.
+
+A genetikus algoritmus mindig egy populációnyi megoldással dolgozik.
+A populációba egyedek tartoznak, amelyek egyenként egy-egy megoldásai a feladatnak.
+Az algoritmus minden iterációban egy új populációt állít elő az aktuális populációból úgy,
+hogy a \textbf{szelekciós operátor} által kiválasztott legrátermettebb szülőkön alkalmazza a
+\textbf{rekombinációs} és \textbf{mutációs operátorokat}.
+
+Ezen algoritmusok alapötlete az, hogy minden újabb generáció
+az előzőnél valamelyest rátermettebb egyedeket tartalmaz, és így a keresés folyamán
+egyre jobb megoldások születnek.
