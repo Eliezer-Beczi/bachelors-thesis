@@ -7,8 +7,4 @@ def update(G, best_S, P, alpha):
         avg += len(S.intersection(best_S))
 
     avg /= len(P)
-
-    if avg == 0:
-        return float('inf')
-    else:
-        return (alpha * metric) / avg
+    return float('inf') if avg == 0 else (alpha * metric) / avg

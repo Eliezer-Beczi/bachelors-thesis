@@ -1,6 +1,11 @@
-def genetic_algorithm(G, k, N=30, pi_min=5, pi_max=50, delta_pi=5, alpha=0.2, tmax=1000):
+
+
+def genetic_algorithm(G, k, N=100,
+                      pi_min=5, pi_max=50, delta_pi=5, alpha=0.2,
+                      tmax=10000):
     def fitness_function(S):
-        subgraph = networkx.subgraph_view(G, filter_node=lambda n: n not in S)
+        subgraph = networkx.subgraph_view(G,
+                                          filter_node=lambda n: n not in S)
         metric = connectivity_metric.pairwise_connectivity(subgraph)
         commonalities = S.intersection(best_S)
 

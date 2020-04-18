@@ -1,5 +1,7 @@
 \section{Genetikus algoritmus}\label{sec:GENETIKUS_ALGORITMUS}
 
+
+\subsection{Általánosan}
 A genetikus algoritmus a metaheurisztikák osztályába tartozik, és a természetes kiválasztódás inspirálta.
 Egy globális optimalizáló, amely gyakran használt optimalizációs és keresési problémák esetében,
 ahol a sok lehetséges megoldás közül a legjobbat kell megkeresni.
@@ -14,3 +16,42 @@ hogy a \textbf{szelekciós operátor} által kiválasztott legrátermettebb szü
 Ezen algoritmusok alapötlete az, hogy minden újabb generáció
 az előzőnél valamelyest rátermettebb egyedeket tartalmaz, és így a keresés folyamán
 egyre jobb megoldások születnek.
+
+\subsection{Saját genetikus algoritmus}
+A CNDP esetén a genetikus algoritmust \aref{lst:GENETIKUS-ALGORITMUS} kódrészlet szemlélteti.
+\lstinputlisting[language={Python}, caption={Saját genetikus algoritmus}, label={lst:GENETIKUS-ALGORITMUS}]{./progfiles/single-objective-cndp/ga/genetic_algorithm.py}
+
+Egy Genetikus Algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
+Generálunk egy kezdeti populációt megoldásokkal. Utána keresztezzük őket, hogy új megoldásokat kapjunk,
+amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy fitness függvény alapján,
+és létrehozunk egy új populációt eltávolítva a rossz megoldásokat.
+A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
+Az algoritmus végén visszatérítjük a legjobb megoldást.
+
+\subsubsection{Inicializáció}
+A kezdeti populáció egyedeit random generáljuk ki. Ez azt jelenti,
+hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz
+a bemeneti gráf csomóponthalmazának. Ezt szemlélteti a \aref{lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
+\lstinputlisting[language={Python}, caption={Random inicializáció}, label={lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION}]{./progfiles/single-objective-cndp/ga/random_solution.py}
+
+Egy új fitness függvényt vezetünk be egy-egy egyed jóságának felmérése végett.
+Ez abban tér el \aref{sec:PAIRWISE_CONNECTIVITY} részben tárgyaltaktól,
+hogy nem csak a páronkénti konnektivitás mértékét vesszük figyelembe egy egyed esetén,
+hanem hogy az eddigi talált legjobb megoldástól mennyire tér el.
+Ezt a fitness függvényt a következő képlettel írjuk le:
+\begin{equation}\label{eqn:SOCNDP_GA_FITNESS_FUNCTION}
+  g(S, S^{*}) = f(S) + \gamma \cdot |S \cap S^{*}|.
+\end{equation}
+A képletben szereplő $S^{*}$ jelenti az eddig talált legjobb megoldást.
+A $\gamma$ egy változó, amely abban segít, hogy fenntartsuk a változatosságot a populáció egyedei között,
+megbüntetve azokat, amelyek túl közel vannak a legjobbhoz.
+A $\gamma$ változót minden iterációban a következő képlettel számoljuk újra:
+\begin{equation}\label{eqn:SOCNDP_GA_GAMMA}
+  \gamma = \frac{\alpha \cdot f(S)}{\langle |S \cap S^{*}| \rangle_{S \in P}},
+\end{equation}
+ahol a nevező a populáció egyedeinek átlagos hasonlóságát jelenti a legjobb egyedhez.
+
+\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját láthatjuk a \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészletben.
+\lstinputlisting[language={Python}, caption={$\gamma$ inicializálása}, label={lst:GENETIKUS-ALGORITMUS:UPDATE}]{./progfiles/single-objective-cndp/ga/update.py}
+
+\subsubsection{Reprodukció}

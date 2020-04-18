@@ -1,5 +1,6 @@
 \section{Mohó algoritmus}\label{sec:MOHO_ALGORITMUS}
 
+\subsection{Általánosan}
 Egy mohó algoritmus egy egyszerű és intuitív algoritmus, amely gyakran használt
 optimalizációs feladatok megoldására. Az algoritmus helyi optimumok megvalósításával próbálja
 megtalálni a globális optimumot.
@@ -13,8 +14,9 @@ addig a jövőben meghozott döntésektől független.
 Az algoritmus minden lépésben mohón választ, folyamatosan lebontva a feladatot kisebb feladattá.
 Más szavakkal, a mohó algoritmus soha nem gondolja újra választásait.
 
+\subsection{Saját mohó algoritmus}
 A CNDP esetén a mohó algoritmust \aref{lst:GREEDY-ALGORITMUS} kódrészlet szemlélteti.
-\lstinputlisting[language={Python}, caption={Mohó algoritmus}, label={lst:GREEDY-ALGORITMUS}]{./progfiles/single-objective-cndp/greedy/greedy_algorithm.py}
+\lstinputlisting[language={Python}, caption={Saját mohó algoritmus}, label={lst:GREEDY-ALGORITMUS}]{./progfiles/single-objective-cndp/greedy/greedy_algorithm.py}
 
 A mohó algoritmus kiindul a gráf csúcslefedéséből.
 \footnote{
