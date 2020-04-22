@@ -5,7 +5,7 @@
 A genetikus algoritmus a metaheurisztikák osztályába tartozik, és a természetes kiválasztódás inspirálta.
 Egy globális optimalizáló, amely gyakran használt optimalizációs és keresési problémák esetében,
 ahol a sok lehetséges megoldás közül a legjobbat kell megkeresni.
-Azt hogy egy megoldás mennyire jó, a fitness függvény mondja meg.
+Azt hogy egy megoldás mennyire jó, a fitnesz függvény mondja meg.
 
 A genetikus algoritmus mindig egy populációnyi megoldással dolgozik.
 A populációba egyedek tartoznak, amelyek egyenként egy-egy megoldásai a feladatnak.
@@ -23,7 +23,7 @@ A CNDP esetén a genetikus algoritmust \aref{lst:GENETIKUS-ALGORITMUS} kódrész
 
 Egy Genetikus Algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
 Generálunk egy kezdeti populációt megoldásokkal. Utána keresztezzük őket, hogy új megoldásokat kapjunk,
-amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy fitness függvény alapján,
+amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy fitnesz függvény alapján,
 és létrehozunk egy új populációt eltávolítva a rossz megoldásokat.
 A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
 Az algoritmus végén visszatérítjük a legjobb megoldást.
@@ -31,15 +31,15 @@ Az algoritmus végén visszatérítjük a legjobb megoldást.
 \subsubsection{Inicializáció}
 A kezdeti populáció egyedeit random generáljuk ki. Ez azt jelenti,
 hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz
-a bemeneti gráf csomóponthalmazának. Ezt szemlélteti a \aref{lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
+a bemeneti gráf csomóponthalmazának. Ezt szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
 \lstinputlisting[language={Python}, caption={Random inicializáció}, label={lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION}]{./progfiles/single-objective-cndp/ga/random_solution.py}
 
-Egy új fitness függvényt vezetünk be egy-egy egyed jóságának felmérése végett.
+Egy új fitnesz függvényt vezetünk be egy-egy egyed jóságának felmérése végett.
 Ez abban tér el \aref{sec:PAIRWISE_CONNECTIVITY} részben tárgyaltaktól,
 hogy nem csak a páronkénti konnektivitás mértékét vesszük figyelembe egy egyed esetén,
 hanem hogy az eddigi talált legjobb megoldástól mennyire tér el.
-Ezt a fitness függvényt a következő képlettel írjuk le:
-\begin{equation}\label{eqn:SOCNDP_GA_FITNESS_FUNCTION}
+Ezt a fitnesz függvényt a következő képlettel írjuk le:
+\begin{equation}\label{eqn:SOCNDP_GA_FITNESZ_FUNCTION}
   g(S, S^{*}) = f(S) + \gamma \cdot |S \cap S^{*}|.
 \end{equation}
 A képletben szereplő $S^{*}$ jelenti az eddig talált legjobb megoldást.
@@ -49,9 +49,36 @@ A $\gamma$ változót minden iterációban a következő képlettel számoljuk �
 \begin{equation}\label{eqn:SOCNDP_GA_GAMMA}
   \gamma = \frac{\alpha \cdot f(S)}{\langle |S \cap S^{*}| \rangle_{S \in P}},
 \end{equation}
-ahol a nevező a populáció egyedeinek átlagos hasonlóságát jelenti a legjobb egyedhez.
+ahol a nevező a populáció egyedeinek és a legjobb egyed közötti átlagos hasonlóságot fejezi ki.
+Az $\alpha$ pedig a képletben található változók egymás feletti fontosságát befolyásolja.
 
-\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját láthatjuk a \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészletben.
+\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját láthatjuk \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészletben.
 \lstinputlisting[language={Python}, caption={$\gamma$ inicializálása}, label={lst:GENETIKUS-ALGORITMUS:UPDATE}]{./progfiles/single-objective-cndp/ga/update.py}
 
 \subsubsection{Reprodukció}
+A genetikus algoritmus egy kulcsfontosságú fázisa a reprodukció.
+Itt döntjük el, hogy a meglévő populációból miként jöjjön létre az új generáció.
+Ez azt jelenti, hogy meghatározzuk, hogy az $S_{1}$ és $S_{2}$ szülők kromoszómáit
+hogyan olvasztjuk egybe annak érdekében, hogy egy új $S'$ egyed szülessen.
+Ezt a folyamatot szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:REPRODUKCIO} kódrészlet.
+\lstinputlisting[language={Python}, caption={Reprodukció}, label={lst:GENETIKUS-ALGORITMUS:REPRODUKCIO}]{./progfiles/single-objective-cndp/ga/new_generation.py}
+
+Esetünkben úgy történik egy új egyed létrehozása, hogy random módon kiválasztunk 2 különböző szülőt,
+és ezek kromoszómáit egybevonjuk: $S' = S_{1} \cup S_{2}$.
+Mivel majdnem biztos, hogy az így kapott egyed kromoszómája több, mint $k$ csomópontot tartalmaz,
+ezért szükséges törölnünk belőle nódusokat, amíg $|S'| > k$.
+Az hogy melyik nódus kerül törlésre az új egyed kromoszómájából, random módon történik.
+
+Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki egy-egy egyed létrehozásához,
+ezért a populáció egyedei között nem teszünk különbséget.
+Vagyis keresztezéskor nem nézzük, hogy csak a legrátermettebb szülőket válasszuk,
+hanem egyenlő eséllyel választunk kevésbé jó fitnesz értékkel rendelkező egyedet is szülőnek.
+Ez lelassítja a populáció uniformizálódásának folyamatát, de segíti a megoldástér bejárását.
+Ez azért jó, mert nem tudjuk előre, hogy a csomópontok mely kombinációja
+fogja eredményezni a bemeneti gráf maximális szétesését, ha ezeket együtt töröljük a gráfból.
+Ezért a kevésbé jó fitnesz értékkel rendelkező egyedeket sem kell figyelmen kívül hagyni,
+mert kombinálva őket jó megoldásokhoz juthatunk.
+
+\subsubsection{Mutáció}
+
+\lstinputlisting[language={Python}, caption={Mutáció}, label={lst:GENETIKUS-ALGORITMUS:MUTACIO}]{./progfiles/single-objective-cndp/ga/mutation.py}

@@ -28,15 +28,15 @@ A maradék csomópontok $V \setminus S$  a gráf maximális független csúcshal
   Angolul: maximal independent set.
 }
 \emph{MIS} alkotják.
-Mivel majdnem biztos, hogy $|S| > k$, ezért mohón elkezdünk kivenni csomópontokat $S$-ból,
-majd ezeket hozzáadni \emph{MIS}-hoz, amíg $|S| > k$.
+Mivel majdnem biztos, hogy $|S| > k$, ezért mohón elkezdünk kivenni csomópontokat $S$-ből,
+majd ezeket hozzáadni \emph{MIS}-hez, amíg $|S| > k$.
 A hozzáadott csomópont az lesz, amelyiket ha visszatesszük az eredeti gráfba,
 akkor a minimum értéket téríti vissza a páronkénti konnektivitásra a keletkezett gráfban.
 
 Mivel több olyan csomópont lehet, amelyeket ha visszateszünk az eredeti gráfba,
 akkor ugyanazt a minimális értéket adják vissza a páronkénti konnektivitásra,
 ezért ezeket eltároljuk a B halmazban, és minden lépésben random módon határozzuk meg,
-hogy melyik kerüljön vissza a \emph{MIS}-ba.
+hogy melyik kerüljön vissza \emph{MIS}-be.
 
 Ezzel az eljárással garantáljuk, hogy a mohó algoritmusunk különböző megoldásokat fog adni
 többszöri futtatások esetén.
