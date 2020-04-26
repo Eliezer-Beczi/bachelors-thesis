@@ -5,6 +5,6 @@ My Bachelor's Thesis in computer science, written at Babeș-Bolyai University of
   <img
     src="https://github.com/Eliezer-Beczi/bachelors-thesis/blob/master/images/cover.jpg"
     alt="Critical Node Detection Problem"
-    width="400"
+    width="500"
   />
 </p>
