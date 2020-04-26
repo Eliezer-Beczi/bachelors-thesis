@@ -9,7 +9,7 @@ My Bachelor's Thesis in computer science, written at Babeș-Bolyai University of
     <img
       src="https://github.com/Eliezer-Beczi/bachelors-thesis/blob/master/images/cover.jpg"
       alt="Critical Node Detection Problem"
-      width="300"
+      width="450"
     />
   </a>
 </p>
