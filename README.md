@@ -1,4 +1,4 @@
-# bachelors-thesis
+# Critical Node Detection Problem
 My Bachelor's Thesis in computer science, written at Babeș-Bolyai University of Cluj-Napoca.
 
 <p align="center">
