@@ -8,7 +8,7 @@ ahol a sok lehetséges megoldás közül a legjobbat kell megkeresni.
 Azt hogy egy megoldás mennyire jó, a fitnesz függvény mondja meg.
 
 A genetikus algoritmus mindig egy populációnyi megoldással dolgozik.
-A populációba egyedek tartoznak, amelyek egyenként egy-egy megoldásai a feladatnak.
+A populációba egyedek tartoznak, amelyek egyenként  egyed esetén megoldásai a feladatnak.
 Az algoritmus minden iterációban egy új populációt állít elő az aktuális populációból úgy,
 hogy a \textbf{szelekciós operátor} által kiválasztott legrátermettebb szülőkön alkalmazza a
 \textbf{rekombinációs} és \textbf{mutációs operátorokat}.
@@ -16,6 +16,7 @@ hogy a \textbf{szelekciós operátor} által kiválasztott legrátermettebb szü
 Ezen algoritmusok alapötlete az, hogy minden újabb generáció
 az előzőnél valamelyest rátermettebb egyedeket tartalmaz, és így a keresés folyamán
 egyre jobb megoldások születnek.
+
 
 \subsection{Saját genetikus algoritmus}
 A CNDP esetén a genetikus algoritmust \aref{lst:GENETIKUS-ALGORITMUS} kódrészlet szemlélteti.
@@ -28,13 +29,14 @@ amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy 
 A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
 Az algoritmus végén visszatérítjük a legjobb megoldást.
 
+
 \subsubsection{Inicializáció}
 A kezdeti populáció egyedeit random generáljuk ki. Ez azt jelenti,
 hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz
 a bemeneti gráf csomóponthalmazának. Ezt szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
 \lstinputlisting[language={Python}, caption={Random inicializáció}, label={lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION}]{./progfiles/single-objective-cndp/ga/random_solution.py}
 
-Egy új fitnesz függvényt vezetünk be egy-egy egyed jóságának felmérése végett.
+Egy új fitnesz függvényt vezetünk be  egyed esetén egyed jóságának felmérése végett.
 Ez abban tér el \aref{sec:PAIRWISE_CONNECTIVITY} részben tárgyaltaktól,
 hogy nem csak a páronkénti konnektivitás mértékét vesszük figyelembe egy egyed esetén,
 hanem hogy az eddigi talált legjobb megoldástól mennyire tér el.
@@ -51,9 +53,18 @@ A $\gamma$ változót minden iterációban a következő képlettel számoljuk �
 \end{equation}
 ahol a nevező a populáció egyedeinek és a legjobb egyed közötti átlagos hasonlóságot fejezi ki.
 Az $\alpha$ pedig a képletben található változók egymás feletti fontosságát befolyásolja.
-
-\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját láthatjuk \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészletben.
+\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészlet mutatja be.
 \lstinputlisting[language={Python}, caption={$\gamma$ inicializálása}, label={lst:GENETIKUS-ALGORITMUS:UPDATE}]{./progfiles/single-objective-cndp/ga/update.py}
+
+A $\pi$ paraméter a mutáció valószínűségét fejezi ki egy egyed esetén.
+Ezt kezdetben $\pi_{min}$-re állítjuk, de minden iterációban frissítjük aszerint,
+hogy találtunk-e az új generációban egy olyan megoldást, amely jobb, mint a globális legjobb.
+Ha találtunk az eddigieknél jobb megoldást, akkor a $\pi$ értékét $\pi_{min}$-re állítjuk,
+különben a $\pi = \min \left(\pi + \Delta \pi, \pi_{max} \right)$ képlet szerint növeljük.
+Ez arra jó, hogy fenntartsuk a populáció sokféleségét abban az esetben,
+amikor nem tudunk javítani az eddig talált legjobb megoldáson,
+mindezt úgy, hogy megnöveljük a mutációk kialakulásának a valószínűségét.
+
 
 \subsubsection{Reprodukció}
 A genetikus algoritmus egy kulcsfontosságú fázisa a reprodukció.
@@ -69,7 +80,7 @@ Mivel majdnem biztos, hogy az így kapott egyed kromoszómája több, mint $k$ c
 ezért szükséges törölnünk belőle nódusokat, amíg $|S'| > k$.
 Az hogy melyik nódus kerül törlésre az új egyed kromoszómájából, random módon történik.
 
-Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki egy-egy egyed létrehozásához,
+Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki  egyed esetén egyed létrehozásához,
 ezért a populáció egyedei között nem teszünk különbséget.
 Vagyis keresztezéskor nem nézzük, hogy csak a legrátermettebb szülőket válasszuk,
 hanem egyenlő eséllyel választunk kevésbé jó fitnesz értékkel rendelkező egyedet is szülőnek.
@@ -79,6 +90,33 @@ fogja eredményezni a bemeneti gráf maximális szétesését, ha ezeket együtt
 Ezért a kevésbé jó fitnesz értékkel rendelkező egyedeket sem kell figyelmen kívül hagyni,
 mert kombinálva őket jó megoldásokhoz juthatunk.
 
-\subsubsection{Mutáció}
 
+\subsubsection{Mutáció}
+A következő nagy jelentőséggel bíró fázisa a genetikus algoritmusnak a mutáció.
+Mutáció alatt azt értjük, hogy vesszük az újonnan létrejött populációt,
+és a populációban található egyedek génjeit perturbáljuk valamilyen csekély valószínűséggel.
+A mutáció azért tartozik a nagy döntések halmazába,
+mert a mutáció révén fenntartjuk a populáció sokféleségét, és elkerüljük a korai konvergenciát.
+\footnote{
+  Angolul: premature convergence.
+}
+\Aref{lst:GENETIKUS-ALGORITMUS:MUTACIO} kódrészlet a mutáció műveletét hívatott bemutatni.
 \lstinputlisting[language={Python}, caption={Mutáció}, label={lst:GENETIKUS-ALGORITMUS:MUTACIO}]{./progfiles/single-objective-cndp/ga/mutation.py}
+
+A populáció minden egyes új egyede esetén, a mutáció valószínűségét a $\pi$ paraméter befolyásolja.
+Generálunk egy egyenletes eloszlású véletlen számot $1$ és $100$ között, és ha ez kisebb, mint $\pi$, akkor módosítjuk a megoldást.
+A módosítás úgy történik, hogy leszögezzük, hogy a megoldás hány génjét szeretnénk változtatni.
+Ezt a számot tükrözi az $n_{g}$ változó, amely értékét a $\left[0, k\right]$ intervallumból veszi, és random generáljuk.
+A következő lépés, hogy kitörlünk $n_{g}$ csomópontot a megoldásból, de mivel majdnem biztos,
+hogy a megoldásunk így nem-optimális, mert $|S| < k$, ezért szükséges visszaadogatnunk csomópontokat $S$-be.
+Ennek érdekében véletlenszerűen kiválasztunk egy csomópontot a $V \setminus S$ halmazból,
+és a kiválasztott csomópontot visszatesszük a megoldásba.
+
+
+\subsubsection{Szelekció}
+Az utolsó fázisa a genetikus algoritmusunknak a szelekció.
+Itt döntjük el, hogy mely egyedek fogják alkotni a következő nemzedéket.
+Jelen esetben ez úgy megy végbe, hogy összefésüljük a régi $P$ és az újonnan létrejött $P'$ populációkat,
+és rendezzük az egyedeket \aref{eqn:SOCNDP_GA_FITNESZ_FUNCTION} fitnesz függvény alapján.
+Növekvő sorrendbe rendezzük őket, mivel nem szabad elfelejtenünk, hogy célunk végső soron a páronkénti konnektivitás minimalizálása.
+Ezután kiválasztjuk az első $\mathcal{N}$ egyedet, és ezeket visszük tovább a következő iterációba.
