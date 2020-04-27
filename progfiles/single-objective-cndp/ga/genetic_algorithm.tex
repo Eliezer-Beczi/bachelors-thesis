@@ -1,0 +1,18 @@
+\begin{algorithm}
+  \caption{Genetic Algorithm}\label{alg:GENETIKUS_ALGORITMUS}
+  \begin{algorithmic}[1]
+    \Function{GA}{$G, k, N, \pi_{\min}, \pi_{\max}, \Delta \pi, \alpha, t_{\max}$}
+    \State $t \leftarrow 0$
+    \State \Call{Initialize}{$N, P, S^{*}, \gamma, \pi$}
+
+    \While{$t < t_{t_{\max}}$}
+    \State $P' \leftarrow \Call{Crossover}{k, N, P}$
+    \State \Call{Mutation}{$k, N, P', \pi$}
+    \State $P \leftarrow \Call{Selection}{P, P'}$
+    \State $\gamma, \pi = \Call{Update}{P, S^{*}, \pi, \pi_{\min}, \pi_{\max}, \Delta \pi, \alpha}$
+    \EndWhile
+
+    \State \Return $P$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

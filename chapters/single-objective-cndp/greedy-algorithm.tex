@@ -15,8 +15,8 @@ Az algoritmus minden lépésben mohón választ, folyamatosan lebontva a feladat
 Más szavakkal, a mohó algoritmus soha nem gondolja újra választásait.
 
 \subsection{Saját mohó algoritmus}
-A CNDP esetén a mohó algoritmust \aref{lst:GREEDY-ALGORITMUS} kódrészlet szemlélteti.
-\lstinputlisting[language={Python}, caption={Saját mohó algoritmus}, label={lst:GREEDY-ALGORITMUS}]{./progfiles/single-objective-cndp/greedy/greedy_algorithm.py}
+A CNDP esetén a mohó algoritmust \aref{alg:GREEDY_ALGORITMUS}. kódrészlet szemlélteti.
+\input{progfiles/single-objective-cndp/greedy/greedy_algorithm}
 
 A mohó algoritmus kiindul a gráf csúcslefedéséből.
 \footnote{
@@ -28,8 +28,8 @@ A maradék csomópontok $V \setminus S$  a gráf maximális független csúcshal
   Angolul: maximal independent set.
 }
 \emph{MIS} alkotják.
-Mivel majdnem biztos, hogy $|S| > k$, ezért mohón elkezdünk kivenni csomópontokat $S$-ből,
-majd ezeket hozzáadni \emph{MIS}-hez, amíg $|S| > k$.
+Mivel majdnem biztos, hogy $\abs{S} > k$, ezért mohón elkezdünk kivenni csomópontokat $S$-ből,
+majd ezeket hozzáadni \emph{MIS}-hez, amíg $\abs{S} > k$.
 A hozzáadott csomópont az lesz, amelyiket ha visszatesszük az eredeti gráfba,
 akkor a minimum értéket téríti vissza a páronkénti konnektivitásra a keletkezett gráfban.
 

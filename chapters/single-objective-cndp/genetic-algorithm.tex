@@ -19,8 +19,8 @@ egyre jobb megoldások születnek.
 
 
 \subsection{Saját genetikus algoritmus}
-A CNDP esetén a genetikus algoritmust \aref{lst:GENETIKUS-ALGORITMUS} kódrészlet szemlélteti.
-\lstinputlisting[language={Python}, caption={Saját genetikus algoritmus}, label={lst:GENETIKUS-ALGORITMUS}]{./progfiles/single-objective-cndp/ga/genetic_algorithm.py}
+A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS}. kódrészlet szemlélteti.
+\input{progfiles/single-objective-cndp/ga/genetic_algorithm}
 
 Egy Genetikus Algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
 Generálunk egy kezdeti populációt megoldásokkal. Utána keresztezzük őket, hogy új megoldásokat kapjunk,
@@ -42,14 +42,14 @@ hogy nem csak a páronkénti konnektivitás mértékét vesszük figyelembe egy 
 hanem hogy az eddigi talált legjobb megoldástól mennyire tér el.
 Ezt a fitnesz függvényt a következő képlettel írjuk le:
 \begin{equation}\label{eqn:SOCNDP_GA_FITNESZ_FUNCTION}
-  g(S, S^{*}) = f(S) + \gamma \cdot |S \cap S^{*}|.
+  g(S, S^{*}) = f(S) + \gamma \cdot \abs{S \cap S^{*}}.
 \end{equation}
 A képletben szereplő $S^{*}$ jelenti az eddig talált legjobb megoldást.
 A $\gamma$ egy változó, amely abban segít, hogy fenntartsuk a változatosságot a populáció egyedei között,
 megbüntetve azokat, amelyek túl közel vannak a legjobbhoz.
 A $\gamma$ változót minden iterációban a következő képlettel számoljuk újra:
 \begin{equation}\label{eqn:SOCNDP_GA_GAMMA}
-  \gamma = \frac{\alpha \cdot f(S)}{\langle |S \cap S^{*}| \rangle_{S \in P}},
+  \gamma = \frac{\alpha \cdot f(S)}{\langle \abs{S \cap S^{*}} \rangle_{S \in P}},
 \end{equation}
 ahol a nevező a populáció egyedeinek és a legjobb egyed közötti átlagos hasonlóságot fejezi ki.
 Az $\alpha$ pedig a képletben található változók egymás feletti fontosságát befolyásolja.
@@ -57,10 +57,10 @@ Az $\alpha$ pedig a képletben található változók egymás feletti fontosság
 \lstinputlisting[language={Python}, caption={$\gamma$ inicializálása}, label={lst:GENETIKUS-ALGORITMUS:UPDATE}]{./progfiles/single-objective-cndp/ga/update.py}
 
 A $\pi$ paraméter a mutáció valószínűségét fejezi ki egy egyed esetén.
-Ezt kezdetben $\pi_{min}$-re állítjuk, de minden iterációban frissítjük aszerint,
+Ezt kezdetben $\pi_{\min}$-re állítjuk, de minden iterációban frissítjük aszerint,
 hogy találtunk-e az új generációban egy olyan megoldást, amely jobb, mint a globális legjobb.
-Ha találtunk az eddigieknél jobb megoldást, akkor a $\pi$ értékét $\pi_{min}$-re állítjuk,
-különben a $\pi = \min \left(\pi + \Delta \pi, \pi_{max} \right)$ képlet szerint növeljük.
+Ha találtunk az eddigieknél jobb megoldást, akkor a $\pi$ értékét $\pi_{\min}$-re állítjuk,
+különben a $\pi = \min \left(\pi + \Delta \pi, \pi_{\max} \right)$ képlet szerint növeljük.
 Ez arra jó, hogy fenntartsuk a populáció sokféleségét abban az esetben,
 amikor nem tudunk javítani az eddig talált legjobb megoldáson,
 mindezt úgy, hogy megnöveljük a mutációk kialakulásának a valószínűségét.
@@ -77,7 +77,7 @@ Ezt a folyamatot szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:REPRODUKCIO} kódr�
 Esetünkben úgy történik egy új egyed létrehozása, hogy random módon kiválasztunk 2 különböző szülőt,
 és ezek kromoszómáit egybevonjuk: $S' = S_{1} \cup S_{2}$.
 Mivel majdnem biztos, hogy az így kapott egyed kromoszómája több, mint $k$ csomópontot tartalmaz,
-ezért szükséges törölnünk belőle nódusokat, amíg $|S'| > k$.
+ezért szükséges törölnünk belőle nódusokat, amíg $\abs{S'} > k$.
 Az hogy melyik nódus kerül törlésre az új egyed kromoszómájából, random módon történik.
 
 Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki  egyed esetén egyed létrehozásához,
@@ -100,15 +100,15 @@ mert a mutáció révén fenntartjuk a populáció sokféleségét, és elkerül
 \footnote{
   Angolul: premature convergence.
 }
-\Aref{lst:GENETIKUS-ALGORITMUS:MUTACIO} kódrészlet a mutáció műveletét hívatott bemutatni.
-\lstinputlisting[language={Python}, caption={Mutáció}, label={lst:GENETIKUS-ALGORITMUS:MUTACIO}]{./progfiles/single-objective-cndp/ga/mutation.py}
+\Aref{alg:GENETIKUS_ALGORITMUS:MUTACIO}. kódrészlet a mutáció műveletét hívatott bemutatni.
+\input{progfiles/single-objective-cndp/ga/mutation}
 
 A populáció minden egyes új egyede esetén, a mutáció valószínűségét a $\pi$ paraméter befolyásolja.
 Generálunk egy egyenletes eloszlású véletlen számot $1$ és $100$ között, és ha ez kisebb, mint $\pi$, akkor módosítjuk a megoldást.
 A módosítás úgy történik, hogy leszögezzük, hogy a megoldás hány génjét szeretnénk változtatni.
 Ezt a számot tükrözi az $n_{g}$ változó, amely értékét a $\left[0, k\right]$ intervallumból veszi, és random generáljuk.
 A következő lépés, hogy kitörlünk $n_{g}$ csomópontot a megoldásból, de mivel majdnem biztos,
-hogy a megoldásunk így nem-optimális, mert $|S| < k$, ezért szükséges visszaadogatnunk csomópontokat $S$-be.
+hogy a megoldásunk így nem-optimális, mert $\abs{S} < k$, ezért szükséges visszaadogatnunk csomópontokat $S$-be.
 Ennek érdekében véletlenszerűen kiválasztunk egy csomópontot a $V \setminus S$ halmazból,
 és a kiválasztott csomópontot visszatesszük a megoldásba.
 

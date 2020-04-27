@@ -1,0 +1,27 @@
+\begin{algorithm}
+  \caption{Mutation Operator}\label{alg:GENETIKUS_ALGORITMUS:MUTACIO}
+  \begin{algorithmic}[1]
+    \Procedure{Mutation}{$k, N, P', \pi$}
+    \For{$i \leftarrow 1, N$}
+    \State $r \leftarrow \Call{Rand Int}{1, 100}$
+
+    \If{$r \leq \pi$}
+    \State $S' \leftarrow P'[i]$
+    \State $n_{g} \leftarrow \Call{Rand Int}{0, k}$\Comment{Number of genes to mutate}
+
+    \For{$j \leftarrow 1, n_{g}$}
+    \State $idx \leftarrow \Call{Rand Int}{1, \abs{S'}}$
+    \State $S' \leftarrow S' \setminus \left\{ P\left[ idx \right] \right\}$
+    \EndFor
+
+    \State $\textit{MIS} \leftarrow V \setminus S'$
+
+    \While{$\abs{S'} < k$}
+    \State $elem \leftarrow \Call{Select}{\textit{MIS}}$
+    \State $S' \leftarrow S' \cup \left\{ elem \right\}$
+    \EndWhile
+    \EndIf
+    \EndFor
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}

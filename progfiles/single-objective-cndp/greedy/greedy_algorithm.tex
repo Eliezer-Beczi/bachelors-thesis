@@ -1,0 +1,15 @@
+\begin{algorithm}
+  \caption{Greedy CNP}\label{alg:GREEDY_ALGORITMUS}
+  \begin{algorithmic}[1]
+    \Function{Greedy}{$G, k$}
+    \State $S \leftarrow \Call{Vertex Cover}{G}$
+
+    \While{$\abs{S} > k$}
+    \State $B \leftarrow \argmin_{i \in S} f(S \setminus \left\{ i \right\})$
+    \State $S \leftarrow S \setminus \left\{ \Call{Select}{B} \right\}$
+    \EndWhile
+
+    \State \Return $S$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

@@ -7,7 +7,7 @@ míg az$f(S)$ jóság függvény fogja jellemezni a $G[V \setminus S]$ feszítet
 Ha $H$-val jelöljük a $G[V \setminus S]$ feszített részgráf összefüggő komponenseinek a halmazát,
 akkor a jóságfüggvény a következő képlettel írható le:
 \begin{equation}\label{eqn:PAIRWISE_CONNECTIVITY}
-  f(S) = \sum_{h \in H} \frac{|h| \cdot (|h| - 1)}{2},
+  f(S) = \sum_{h \in H} \frac{\abs{h} \cdot (\abs{h} - 1)}{2},
 \end{equation}
 amelyet az irodalom \cite{ventresca2012global, aringhieri2016general} úgy tart számon,
 hogy \textbf{páronkénti konnektivitás}.
@@ -16,7 +16,5 @@ Tehát a feladat \aref{eqn:PAIRWISE_CONNECTIVITY} függvénynek a minimalizálá
   \min_{S \subseteq V} f(S).
 \end{equation}
 
-\Aref{eqn:PAIRWISE_CONNECTIVITY} fitnesz függvény implementációját
-\aref{lst:PAIRWISE-CONNECTIVITY} kódrészlet szemlélteti Python-ban.
-A továbbiakban tárgyalt három algoritmus ezt a fitnesz függvényt fogja használni.
+\Aref{eqn:PAIRWISE_CONNECTIVITY} fitnesz függvény implementációját \aref{lst:PAIRWISE-CONNECTIVITY}. kódrészlet szemlélteti Python-ban.
 \lstinputlisting[language={Python}, caption={Páronkénti konnektivitás}, label={lst:PAIRWISE-CONNECTIVITY}]{./progfiles/single-objective-cndp/pairwise_connectivity.py}
