@@ -1,17 +1,19 @@
 \begin{algorithm}
   \caption{Mutation Operator}\label{alg:GENETIKUS_ALGORITMUS:MUTACIO}
   \begin{algorithmic}[1]
-    \Procedure{Mutation}{$k, N, P', \pi$}
+    \Function{Mutation}{$k, N, P, \pi$}
+    \State $P' \leftarrow \emptyset$
+
     \For{$i \leftarrow 1, N$}
-    \State $r \leftarrow \Call{Rand Int}{1, 100}$
+    \State $r \leftarrow \Call{Rand Int}{1, N}$
 
     \If{$r \leq \pi$}
-    \State $S' \leftarrow P'[i]$
+    \State $S' \leftarrow P[i]$
     \State $n_{g} \leftarrow \Call{Rand Int}{0, k}$\Comment{Number of genes to mutate}
 
     \For{$j \leftarrow 1, n_{g}$}
-    \State $idx \leftarrow \Call{Rand Int}{1, \abs{S'}}$
-    \State $S' \leftarrow S' \setminus \left\{ P\left[ idx \right] \right\}$
+    \State $elem \leftarrow \Call{Select}{S'}$
+    \State $S' \leftarrow S' \setminus \left\{ elem \right\}$
     \EndFor
 
     \State $\textit{MIS} \leftarrow V \setminus S'$
@@ -20,8 +22,14 @@
     \State $elem \leftarrow \Call{Select}{\textit{MIS}}$
     \State $S' \leftarrow S' \cup \left\{ elem \right\}$
     \EndWhile
+    \State $P' \leftarrow P' \cup \left\{ S' \right\}$
+    \Else
+    \State $S \leftarrow P\left[ i \right]$
+    \State $P' \leftarrow P' \cup \left\{ S \right\}$
     \EndIf
     \EndFor
-    \EndProcedure
+
+    \State \Return $P'$
+    \EndFunction
   \end{algorithmic}
 \end{algorithm}

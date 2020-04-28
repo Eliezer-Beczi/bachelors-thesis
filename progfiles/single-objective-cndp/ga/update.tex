@@ -1,0 +1,26 @@
+\begin{algorithm}
+  \caption{Update $S^{*}$, $\gamma$ and $\pi$ variables}\label{alg:GENETIKUS-ALGORITMUS:UPDATE}
+  \begin{algorithmic}[1]
+    \Function{Update}{$N, P, S^{*}, \pi, \pi_{\min}, \pi_{\max}, \Delta \pi, \alpha$}
+    \State $avg \leftarrow 0$
+
+    \For{$i \leftarrow 1, N$}
+    \State $S \leftarrow P\left[ i \right]$
+    \State $avg \leftarrow avg + \abs{S \cap S^{*}}$
+    \EndFor
+
+    \State $avg \leftarrow \dfrac{avg}{N}$
+    \State $\gamma \leftarrow \dfrac{\alpha \cdot f(S^{*})}{avg}$
+    \State $S \leftarrow P\left[ 0 \right]$
+
+    \If{$f(S) < f(S^{*})$}
+    \State $S^{*} \leftarrow S$
+    \State $\pi \leftarrow \pi_{\min}$
+    \Else
+    \State $\pi \leftarrow \min(\pi + \Delta \pi, \pi_{\max})$
+    \EndIf
+
+    \State \Return $S^{*}, \gamma, \pi$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,15 @@
+\begin{algorithm}
+  \caption{Random Solution}\label{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION}
+  \begin{algorithmic}[1]
+    \Function{RandSol}{$k$}
+    \State $S \leftarrow V$
+
+    \While{$\abs{S} > k$}
+    \State $elem \leftarrow \Call{Select}{S}$
+    \State $S \leftarrow S \setminus \left\{ elem \right\}$
+    \EndWhile
+
+    \State \Return $S$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

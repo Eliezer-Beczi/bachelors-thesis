@@ -1,0 +1,23 @@
+\begin{algorithm}
+  \caption{Recombination Operator}\label{alg:GENETIKUS-ALGORITMUS:REPRODUKCIO}
+  \begin{algorithmic}[1]
+    \Function{Crossover}{$k, N, P$}
+    \State $P' \leftarrow \emptyset$
+
+    \For{$i \leftarrow 1, N$}
+    \State $S_{1} \leftarrow \Call{Select}{P}$
+    \State $S_{2} \leftarrow \Call{Select}{P}$
+    \State $S' \leftarrow S_{1} \cup S_{2}$
+
+    \If{$\abs{S'} = k$}
+    \State $P' \leftarrow P' \cup \left\{ S' \right\}$
+    \Else
+    \State $S' \leftarrow \Call{Random Sample}{S', k}$\Comment{Take $k$ random elements from $S'$}
+    \State $P' \leftarrow P' \cup \left\{ S' \right\}$
+    \EndIf
+    \EndFor
+
+    \State \Return $P'$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

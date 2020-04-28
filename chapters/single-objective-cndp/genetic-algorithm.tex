@@ -19,9 +19,6 @@ egyre jobb megoldások születnek.
 
 
 \subsection{Saját genetikus algoritmus}
-A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS}. kódrészlet szemlélteti.
-\input{progfiles/single-objective-cndp/ga/genetic_algorithm}
-
 Egy Genetikus Algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
 Generálunk egy kezdeti populációt megoldásokkal. Utána keresztezzük őket, hogy új megoldásokat kapjunk,
 amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy fitnesz függvény alapján,
@@ -29,12 +26,15 @@ amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy 
 A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
 Az algoritmus végén visszatérítjük a legjobb megoldást.
 
+A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} kódrészlet szemlélteti.
+\input{progfiles/single-objective-cndp/ga/genetic_algorithm}
+
 
 \subsubsection{Inicializáció}
-A kezdeti populáció egyedeit random generáljuk ki. Ez azt jelenti,
-hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz
-a bemeneti gráf csomóponthalmazának. Ezt szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
-\lstinputlisting[language={Python}, caption={Random inicializáció}, label={lst:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION}]{./progfiles/single-objective-cndp/ga/random_solution.py}
+A kezdeti populáció egyedeit random generáljuk ki.
+Ez azt jelenti, hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz a bemeneti gráf csomóponthalmazának.
+Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
+\input{progfiles/single-objective-cndp/ga/random_solution}
 
 Egy új fitnesz függvényt vezetünk be  egyed esetén egyed jóságának felmérése végett.
 Ez abban tér el \aref{sec:PAIRWISE_CONNECTIVITY} részben tárgyaltaktól,
@@ -49,12 +49,10 @@ A $\gamma$ egy változó, amely abban segít, hogy fenntartsuk a változatosság
 megbüntetve azokat, amelyek túl közel vannak a legjobbhoz.
 A $\gamma$ változót minden iterációban a következő képlettel számoljuk újra:
 \begin{equation}\label{eqn:SOCNDP_GA_GAMMA}
-  \gamma = \frac{\alpha \cdot f(S)}{\langle \abs{S \cap S^{*}} \rangle_{S \in P}},
+  \gamma = \frac{\alpha \cdot f(S^{*})}{\langle \abs{S \cap S^{*}} \rangle_{S \in P}},
 \end{equation}
 ahol a nevező a populáció egyedeinek és a legjobb egyed közötti átlagos hasonlóságot fejezi ki.
 Az $\alpha$ pedig a képletben található változók egymás feletti fontosságát befolyásolja.
-\Aref{eqn:SOCNDP_GA_GAMMA} képlet implementációját \aref{lst:GENETIKUS-ALGORITMUS:UPDATE} kódrészlet mutatja be.
-\lstinputlisting[language={Python}, caption={$\gamma$ inicializálása}, label={lst:GENETIKUS-ALGORITMUS:UPDATE}]{./progfiles/single-objective-cndp/ga/update.py}
 
 A $\pi$ paraméter a mutáció valószínűségét fejezi ki egy egyed esetén.
 Ezt kezdetben $\pi_{\min}$-re állítjuk, de minden iterációban frissítjük aszerint,
@@ -65,14 +63,15 @@ Ez arra jó, hogy fenntartsuk a populáció sokféleségét abban az esetben,
 amikor nem tudunk javítani az eddig talált legjobb megoldáson,
 mindezt úgy, hogy megnöveljük a mutációk kialakulásának a valószínűségét.
 
+Az $S^{*}$, $\gamma$ és $\pi$ változók frissítését \aref{alg:GENETIKUS-ALGORITMUS:UPDATE} kódrészlet mutatja be.
+\input{progfiles/single-objective-cndp/ga/update}
+
 
 \subsubsection{Reprodukció}
 A genetikus algoritmus egy kulcsfontosságú fázisa a reprodukció.
 Itt döntjük el, hogy a meglévő populációból miként jöjjön létre az új generáció.
 Ez azt jelenti, hogy meghatározzuk, hogy az $S_{1}$ és $S_{2}$ szülők kromoszómáit
 hogyan olvasztjuk egybe annak érdekében, hogy egy új $S'$ egyed szülessen.
-Ezt a folyamatot szemlélteti \aref{lst:GENETIKUS-ALGORITMUS:REPRODUKCIO} kódrészlet.
-\lstinputlisting[language={Python}, caption={Reprodukció}, label={lst:GENETIKUS-ALGORITMUS:REPRODUKCIO}]{./progfiles/single-objective-cndp/ga/new_generation.py}
 
 Esetünkben úgy történik egy új egyed létrehozása, hogy random módon kiválasztunk 2 különböző szülőt,
 és ezek kromoszómáit egybevonjuk: $S' = S_{1} \cup S_{2}$.
@@ -90,6 +89,9 @@ fogja eredményezni a bemeneti gráf maximális szétesését, ha ezeket együtt
 Ezért a kevésbé jó fitnesz értékkel rendelkező egyedeket sem kell figyelmen kívül hagyni,
 mert kombinálva őket jó megoldásokhoz juthatunk.
 
+A reprodukciós folyamatot szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:REPRODUKCIO} kódrészlet.
+\input{progfiles/single-objective-cndp/ga/crossover}
+
 
 \subsubsection{Mutáció}
 A következő nagy jelentőséggel bíró fázisa a genetikus algoritmusnak a mutáció.
@@ -100,8 +102,6 @@ mert a mutáció révén fenntartjuk a populáció sokféleségét, és elkerül
 \footnote{
   Angolul: premature convergence.
 }
-\Aref{alg:GENETIKUS_ALGORITMUS:MUTACIO}. kódrészlet a mutáció műveletét hívatott bemutatni.
-\input{progfiles/single-objective-cndp/ga/mutation}
 
 A populáció minden egyes új egyede esetén, a mutáció valószínűségét a $\pi$ paraméter befolyásolja.
 Generálunk egy egyenletes eloszlású véletlen számot $1$ és $100$ között, és ha ez kisebb, mint $\pi$, akkor módosítjuk a megoldást.
@@ -112,6 +112,9 @@ hogy a megoldásunk így nem-optimális, mert $\abs{S} < k$, ezért szükséges 
 Ennek érdekében véletlenszerűen kiválasztunk egy csomópontot a $V \setminus S$ halmazból,
 és a kiválasztott csomópontot visszatesszük a megoldásba.
 
+\Aref{alg:GENETIKUS_ALGORITMUS:MUTACIO} kódrészlet a mutáció műveletét hívatott bemutatni.
+\input{progfiles/single-objective-cndp/ga/mutation}
+
 
 \subsubsection{Szelekció}
 Az utolsó fázisa a genetikus algoritmusunknak a szelekció.
@@ -119,4 +122,7 @@ Itt döntjük el, hogy mely egyedek fogják alkotni a következő nemzedéket.
 Jelen esetben ez úgy megy végbe, hogy összefésüljük a régi $P$ és az újonnan létrejött $P'$ populációkat,
 és rendezzük az egyedeket \aref{eqn:SOCNDP_GA_FITNESZ_FUNCTION} fitnesz függvény alapján.
 Növekvő sorrendbe rendezzük őket, mivel nem szabad elfelejtenünk, hogy célunk végső soron a páronkénti konnektivitás minimalizálása.
-Ezután kiválasztjuk az első $\mathcal{N}$ egyedet, és ezeket visszük tovább a következő iterációba.
+Ezután kiválasztjuk az első $N$ egyedet, és ezeket visszük tovább a következő iterációba.
+
+Genetikus algoritmusunk szelekciós szakaszát \aref{alg:GENETIKUS-ALGORITMUS:SZELEKCIO} kódrészlet ismerteti.
+\input{progfiles/single-objective-cndp/ga/selection}
