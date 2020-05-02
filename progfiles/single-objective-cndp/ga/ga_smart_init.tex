@@ -1,0 +1,15 @@
+\begin{algorithm}
+  \caption{Smart Initialization}\label{alg:GENETIKUS-ALGORITMUS:SMART-INIT}
+  \begin{algorithmic}[1]
+    \Function{Smart Init}{$G, k, N$}
+    \State $P \leftarrow \emptyset$
+    \For{$i \leftarrow 1, N \cdot \frac{10}{100}$}
+    \State $P \leftarrow P \cup  \left\{ \Call{Greedy}{G, k} \right\}$
+    \EndFor
+    \While{$\abs{P} < N$}
+    \State $P \leftarrow P \cup  \left\{ \Call{Rand Sol}{k} \right\}$
+    \EndWhile
+    \State \Return $P$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
