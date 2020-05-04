@@ -24,7 +24,7 @@ Tehát a feladat \aref{eqn:PAIRWISE_CONNECTIVITY} függvénynek a minimalizálá
 
 
 \subsubsection{Egy példa}
-\Aref{fig:PAIRWISE_CONNECTIVITY_EXAMPLE}. ábrán látható gráfban,
+\Aref{fig:CNDP_EXAMPLE}. ábrán látható gráfban,
 ha $k = 2$ kritikus csomópontot kell azonosítanunk,
 akkor $S = \left\{ 1, 2 \right\}$ eredményezi az optimális megoldást.
 A $G\left[ V \setminus S \right]$ feszített részgráf két, egyenként öt csomópontból álló összefüggő komponensre esik szét,
@@ -36,13 +36,13 @@ vagyis $\abs{H} = 2$. Így \aref{eqn:PAIRWISE_CONNECTIVITY} jóság függvény a
 \begin{figure}[h]
   \centering
   \begin{tabular}{ll}
-    \includegraphics[scale=0.3]{images/pairwise_connectivity_before.png}
+    \includegraphics[scale=0.3]{images/cndp_before.png}
      &
-    \includegraphics[scale=0.3]{images/pairwise_connectivity_after.png}
+    \includegraphics[scale=0.3]{images/cndp_after.png}
   \end{tabular}
   \caption{
     Példa egy kis méretű gráfra (bal oldalt), amely a 6. és 7. csomópontok törlése után
     szétesik két összefüggő komponensre (jobb oldalt).
   }
-  \label{fig:PAIRWISE_CONNECTIVITY_EXAMPLE}
+  \label{fig:CNDP_EXAMPLE}
 \end{figure}
