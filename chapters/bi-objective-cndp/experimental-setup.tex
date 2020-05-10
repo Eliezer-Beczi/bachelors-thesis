@@ -1,0 +1,25 @@
+\section{Kísérleti előkészítés}
+
+Ebben a részben bemutatjuk a BOCNDP probléma megoldására javasolt genetikus algoritmusokat
+és ezek paraméterezéseit.
+
+\begin{description}
+  \item[NSGAII] -- Az NSGAII (Non-dominated Sorting Genetic Algorithm II) az egyik legnépszerűbb többcélú optimalizáló algoritmus,
+        amely az NSGA továbbfejlesztett változata. Az NSGAII a megszokott rekombinációs és mutációs genetikai operátorokon kívül,
+        amelyek új egyedek létrehozásáért felelősek, két másik különleges mechanizmust használ a következő generáció populációjának létrehozásához:
+        \textit{nem-dominált rendezés}\footnote{ Angolul: non-dominated sorting. } révén a populációt alpopulációkra
+        osztja valamilyen dominancia által meghatározott sorrend alapján (pl. Pareto, Nash vagy Berge dominancia),
+        és kiszámítja az alpopulációk egyedei közötti \textit{tömörülési távolságot}\footnote{ Angolul: crowding distance. },
+        felállítva egy sorrendet az alpopulációk egyedei között, hogy az elszigetelt megoldásokat részesítse előnyben.
+  \item[EpsMOEA] -- Az EpsMOEA (Epsilon Multi-Objective Evolutionary Algorithm) egy egyensúlyi állapotú evolúciós algoritmus,
+        amely $\epsilon$-dominancia archiválást használ a populáció sokszínűségének fenntartása végett.
+  \item[SPEA2] -- A SPEA2 (Strength Pareto Evolutionary Algorithm 2) feladata, hogy megtaláljon és fenntartson egy frontnyi nem-dominált megoldást,
+        ideális esetben egy halmaznyi Pareto-optimális megoldást. Ennek elérése érdekében egy evolúciós eljárást használ
+        - felhasználva a genetikai rekombinációs és mutációs operátorokat - a megoldástér felderítése végett,
+        és egy szelekciós eljárást, amely fitnesz függvénye egy egyed domináltságának és a becsült Pareto front zsúfoltságának a kombinációja.
+        A nem-dominált megoldások halmazáról egy archívum van karbantartva, amely különbözik az evolúciós eljárásban használt megoldások populációjától,
+        biztosítva ezáltal egy elitista kiválasztást.
+  \item[IBEA] --
+  \item[PAES] --
+  \item[EpsNSGAII] --
+\end{description}
