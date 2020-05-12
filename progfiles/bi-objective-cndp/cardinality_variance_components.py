@@ -5,7 +5,6 @@ def cardinality_variance(exclude=None):
     S = set(exclude)
     subgraph = networkx.subgraph_view(G, filter_node=lambda n: n not in S)
     components = list(networkx.connected_components(subgraph))
-
     num_of_components = len(components)
     num_of_nodes = subgraph.number_of_nodes()
     variance = 0

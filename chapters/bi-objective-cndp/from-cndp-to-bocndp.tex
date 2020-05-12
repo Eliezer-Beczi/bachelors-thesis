@@ -33,7 +33,18 @@ A $H$ halmaz számosságának meghatározását \aref{lst:NO-CONNECTED-COMPONENT
 míg \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlet implementációját \aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlet.
 
 
-\begin{figure}[h]
+\subsubsection{Egy példa}
+\Aref{fig:BOCNDP_EXAMPLE} ábrán látható gráfban, ha $k = 2$ kritikus csomópontot kell azonosítanunk,
+akkor $S = \left\{ 2, 3 \right\}$ eredményezi az optimális megoldást.
+A $G\left[ V \setminus S \right]$ feszített részgráf szétesik egy egy csomópontból álló,
+és négy három csomópontból álló komponensre, vagyis $\abs{H} = 5$.
+Így \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlettel leírt komponensek közötti variancia a következőképpen számolható ki:
+\[
+  var(H) = \dfrac{1}{5} \cdot \left[ \left( 1 - \dfrac{13}{5} \right)^{2} + 4 \cdot \left( 3 - \dfrac{13}{5} \right)^{2} \right] = \dfrac{16}{25} = 0.64.
+\]
+
+
+\begin{figure}[t]
   \centering
   \begin{tabular}{ll}
     \includegraphics[scale=0.4]{images/bocndp_before.png}
@@ -46,16 +57,6 @@ míg \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlet implementációját \are
   }
   \label{fig:BOCNDP_EXAMPLE}
 \end{figure}
-
-\subsubsection{Egy példa}
-\Aref{fig:BOCNDP_EXAMPLE} ábrán látható gráfban, ha $k = 2$ kritikus csomópontot kell azonosítanunk,
-akkor $S = \left\{ 2, 3 \right\}$ eredményezi az optimális megoldást.
-A $G\left[ V \setminus S \right]$ feszített részgráf szétesik egy egy csomópontból álló,
-és négy három csomópontból álló komponensre, vagyis $\abs{H} = 5$.
-Így \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlettel leírt komponensek közötti variancia a következőképpen számolható ki:
-\[
-  var(H) = \dfrac{1}{5} \cdot \left[ \left( 1 - \dfrac{13}{5} \right)^{2} + 4 \cdot \left( 3 - \dfrac{13}{5} \right)^{2} \right] = \dfrac{16}{25} = 0.64.
-\]
 
 
 \lstinputlisting[
