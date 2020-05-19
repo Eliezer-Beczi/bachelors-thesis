@@ -15,16 +15,16 @@ Az algoritmus minden lépésben mohón választ, folyamatosan lebontva a feladat
 Más szavakkal, a mohó algoritmus soha nem gondolja újra választásait.
 
 \subsection{Saját mohó algoritmus}
-A mohó algoritmus kiindul a gráf csúcslefedéséből.
+A mohó algoritmus kiindul a gráf csúcslefedéséből,
 \footnote{
   Angolul: vertex cover.
 }
-Ez lesz a kezdeti $S$ megoldásunk.
+ez lesz a kezdeti $S$ megoldásunk.
 A maradék csomópontok $V \setminus S$  a gráf maximális független csúcshalmazát
 \footnote{
   Angolul: maximal independent set.
 }
-\emph{MIS} alkotják.
+$\left( \textit{MIS} \right)$ alkotják.
 Mivel majdnem biztos, hogy a megoldásunkban több, mint k csomópont lesz, ezért mohón elkezdünk kivenni csomópontokat $S$-ből,
 majd ezeket hozzáadni \emph{MIS}-hez, amíg $\abs{S} > k$.
 A hozzáadott csomópont az lesz, amelyiket ha visszatesszük az eredeti gráfba,

@@ -4,22 +4,22 @@ Ebben a részben bemutatjuk a BOCNDP probléma megoldására javasolt genetikus 
 Az algoritmusokat nem mi implementáljuk, hanem a Platypus keretrendszer \cite{hadka2017platypus} által biztosított osztályokat fogjuk használni.
 
 \begin{description}
-      \item[NSGAII] -- Az NSGAII (Non-dominated Sorting Genetic Algorithm II) \cite{ventresca2018bi} az egyik legnépszerűbb többcélú optimalizáló algoritmus,
+      \item[NSGAII] -- Az NSGAII (Non-dominated Sorting Genetic Algorithm II) \cite{deb2002fast} az egyik legnépszerűbb többcélú optimalizáló algoritmus,
             amely az NSGA továbbfejlesztett változata. Az NSGAII a megszokott rekombinációs és mutációs genetikai operátorokon kívül,
             amelyek új egyedek létrehozásáért felelősek, két másik különleges mechanizmust használ a következő generáció populációjának létrehozásához:
             \textit{nem-dominált rendezés}\footnote{ Angolul: non-dominated sorting. } révén a populációt alpopulációkra
             osztja valamilyen dominancia által meghatározott sorrend alapján (pl. Pareto, Nash vagy Berge dominancia),
             és kiszámítja az alpopulációk egyedei közötti \textit{tömörülési távolságot}\footnote{ Angolul: crowding distance. },
             felállítva egy sorrendet az alpopulációk egyedei között, hogy az elszigetelt megoldásokat részesítse előnyben.
-      \item[EpsMOEA] -- Az EpsMOEA (Epsilon Multi-Objective Evolutionary Algorithm) \cite{ventresca2018bi} egy egyensúlyi állapotú evolúciós algoritmus,
+      \item[EpsMOEA] -- Az EpsMOEA (Epsilon Multi-Objective Evolutionary Algorithm) \cite{deb2003towards} egy egyensúlyi állapotú evolúciós algoritmus,
             amely $\epsilon$-dominancia archiválást használ a populáció sokszínűségének fenntartása végett.
-      \item[SPEA2] -- A SPEA2 (Strength Pareto Evolutionary Algorithm 2) \cite{brownlee2011clever} feladata, hogy megtaláljon és fenntartson egy frontnyi nem-dominált megoldást,
+      \item[SPEA2] -- A SPEA2 (Strength Pareto Evolutionary Algorithm 2) \cite{zitzler2001spea2} feladata, hogy megtaláljon és fenntartson egy frontnyi nem-dominált megoldást,
             ideális esetben egy halmaznyi Pareto-optimális megoldást. Ennek elérése érdekében egy evolúciós eljárást használ
             - felhasználva a genetikai rekombinációs és mutációs operátorokat - a megoldástér felderítése végett,
             és egy szelekciós eljárást, amely fitnesz függvénye egy egyed domináltságának és a becsült Pareto front zsúfoltságának a kombinációja.
             A nem-dominált megoldások halmazáról egy archívum van karbantartva, amely különbözik az evolúciós eljárásban használt megoldások populációjától,
             biztosítva ezáltal egy elitista kiválasztást.
-      \item[IBEA] -- Az IBEA (Indicator Based Evolutionary Algorithm) \cite{li2017modified} alapötlete, hogy egy \textit{bináris hipertérfogat indikátort} használ a szelekciós eljárás szakaszában,
+      \item[IBEA] -- Az IBEA (Indicator Based Evolutionary Algorithm) \cite{zitzler2004indicator} alapötlete, hogy egy \textit{bináris hipertérfogat indikátort} használ a szelekciós eljárás szakaszában,
             amikor elválik, hogy mely egyedek fognak tovább élni, a következő generáció alapjául szolgálva.
       \item[PAES] -- A PAES (Pareto Archived Evolution Strategy) \cite{knowles1999pareto} egy többcélú optimalizáló, amely két fő céllal lett kifejlesztve.
             Az elsődleges cél, hogy szigorúan lokális keresésre korlátozódik: a jelenlegi megoldást csak kis mértékben változtatja (mutáció),
@@ -28,6 +28,6 @@ Az algoritmusokat nem mi implementáljuk, hanem a Platypus keretrendszer \cite{h
             A második cél, hogy az algoritmus egy valódi Pareto optimalizáló kell, hogy legyen, minden nem-dominált megoldást egyformán kezelve.
             Mindkét cél elérése azonban elég problémás, mert az esetek többségében, amikor egy pár megoldást összehasonlítunk, akkor egyik sem fogja dominálni a másikat.
             A PAES ezt úgy oldja meg, hogy karbantart egy archívumot a nem-dominált megoldások halmazáról, amely révén felbecsüli az új megoldás jóságát.
-      \item[EpsNSGAII] -- Az EpsNSGAII (Epsilon NSGAII) \cite{ventresca2018bi} az NSGAII egy kibővített változata, amely $\epsilon$-dominancia archiválást használ.
+      \item[EpsNSGAII] -- Az EpsNSGAII (Epsilon NSGAII) \cite{kollat2005value} az NSGAII egy kibővített változata, amely $\epsilon$-dominancia archiválást használ.
             Továbbá, véletlenszerű újraindítás jellemzi, biztosítva ezáltal egy változatosabb megoldáshalmazt.
 \end{description}

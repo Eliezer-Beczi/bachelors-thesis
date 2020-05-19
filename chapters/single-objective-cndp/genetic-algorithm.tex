@@ -5,10 +5,10 @@
 A genetikus algoritmus a metaheurisztikák osztályába tartozik, és a természetes kiválasztódás inspirálta.
 Egy globális optimalizáló, amely gyakran használt optimalizációs és keresési problémák esetében,
 ahol a sok lehetséges megoldás közül a legjobbat kell megkeresni.
-Azt hogy egy megoldás mennyire jó, a fitnesz függvény mondja meg.
+Azt hogy egy megoldás mennyire jó, a fitnesz vagy jóság függvény mondja meg.
 
 A genetikus algoritmus mindig egy populációnyi megoldással dolgozik.
-A populációba egyedek tartoznak, amelyek egyenként  egyed esetén megoldásai a feladatnak.
+A populációba egyedek tartoznak, amelyek egyenként megoldásai a feladatnak.
 Az algoritmus minden iterációban egy új populációt állít elő az aktuális populációból úgy,
 hogy a \textbf{szelekciós operátor} által kiválasztott legrátermettebb szülőkön alkalmazza a
 \textbf{rekombinációs} és \textbf{mutációs operátorokat}.
@@ -29,13 +29,21 @@ A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} kódrész
 \input{progfiles/single-objective-cndp/ga/genetic_algorithm}
 
 
+\subsubsection{Reprezentáció}
+Egy egyedet egy halmaznyi paraméter (változó) jellemez, amelyeket úgy nevezünk, hogy \textit{gének}.
+A gének összessége alkotja a \textit{kromoszómát}, amely a probléma egy lehetséges megoldását kódolja, amit a genetikus algoritmus próbál megoldani.
+A CNDP esetén minden gén a bemeneti gráf egy különböző csomópontja, a kromoszóma pedig a gráf csomóponthalmazának egy részhalmaza.
+Például, ha a $G$ bemeneti gráf a $V = \left\{ 1, 2, \dotsc, 9 \right\}$ csomópontokból áll, és $k = 5$ nódust akarunk törölni,
+akkor a kromoszómát egy öt elemű halmazzal fogjuk reprezentálni: $\left\{g_1,g_2,g_3,g_4,g_5\right\}$.
+
+
 \subsubsection{Inicializáció}
 A kezdeti populáció egyedeit random generáljuk ki.
 Ez azt jelenti, hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz a bemeneti gráf csomóponthalmazának.
 Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
 \input{progfiles/single-objective-cndp/ga/random_solution}
 
-Egy új fitnesz függvényt vezetünk be  egyed esetén egyed jóságának felmérése végett.
+Egy új fitnesz függvényt vezetünk be egy egyed jóságának felmérése végett.
 Ez abban tér el \aref{sec:PAIRWISE_CONNECTIVITY} részben tárgyaltaktól,
 hogy nem csak a páronkénti konnektivitás mértékét vesszük figyelembe egy egyed esetén,
 hanem hogy az eddigi talált legjobb megoldástól mennyire tér el.
