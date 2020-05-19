@@ -30,10 +30,17 @@ akkor $S = \left\{ 6, 7 \right\}$ eredményezi az optimális megoldást.
 A $G\left[ V \setminus S \right]$ feszített részgráf két, egyenként öt csomópontból álló összefüggő komponensre esik szét,
 vagyis $\abs{H} = 2$. Így \aref{eqn:PAIRWISE_CONNECTIVITY} jóság függvény a következőképpen számolódik:
 \[
-  f(S) = \dfrac{5 - (5 - 1)}{2} + \dfrac{5 - (5 - 1)}{2} = 20.
+  f(S) = \dfrac{5 \cdot (5 - 1)}{2} + \dfrac{5 \cdot (5 - 1)}{2} = 20.
 \]
 
-\begin{figure}[h]
+Látható, hogy nem elegendő csupán fokszám alapján csomópontokat kritikusnak nyilvánítani,
+mivel az esetek túlnyomó többségében ez nem fog jó megoldáshoz vezetni.
+Például, ha \aref{fig:CNDP_EXAMPLE}. ábrán található gráfban a két legnagyobb fokszámmal rendelkező nódust $S = \left\{5,9\right\}$ töröljük,
+akkor a $G$ gráf ugyan szétesik $\abs{H} = 2$ komponensre,
+de az eredmény jósága $f(S) = \dfrac{1 \cdot (1 - 1)}{2} + \dfrac{9 \cdot (9 - 1)}{2} = 36$ számottevően rosszabb.
+
+
+\begin{figure}[t]
   \centering
   \begin{tabular}{ll}
     \includegraphics[scale=0.3]{images/cndp_before.png}
