@@ -1,4 +1,4 @@
-\section{Kísérleti előkészítés}
+\section{Kísérleti előkészítés}\label{sec:KISERLETI_ELOKESZITES}
 
 Ebben a részben bemutatjuk a BOCNDP probléma megoldására javasolt genetikus algoritmusokat és ezek paraméterezéseit.
 Az algoritmusokat nem mi implementáljuk, hanem a Platypus keretrendszer \cite{hadka2017platypus} által biztosított osztályokat fogjuk használni.
@@ -16,7 +16,7 @@ Az algoritmusokat nem mi implementáljuk, hanem a Platypus keretrendszer \cite{h
       \item[SPEA2] -- A SPEA2 (Strength Pareto Evolutionary Algorithm 2) \cite{zitzler2001spea2} feladata, hogy megtaláljon és fenntartson egy frontnyi nem-dominált megoldást,
             ideális esetben egy halmaznyi Pareto-optimális megoldást. Ennek elérése érdekében egy evolúciós eljárást használ
             - felhasználva a genetikai rekombinációs és mutációs operátorokat - a megoldástér felderítése végett,
-            és egy szelekciós eljárást, amely fitnesz függvénye egy egyed domináltságának és a becsült Pareto front zsúfoltságának a kombinációja.
+            és egy szelekciós eljárást, amely fitnesz függvénye egy egyed domináltságának és a becsült Pareto-front zsúfoltságának a kombinációja.
             A nem-dominált megoldások halmazáról egy archívum van karbantartva, amely különbözik az evolúciós eljárásban használt megoldások populációjától,
             biztosítva ezáltal egy elitista kiválasztást.
       \item[IBEA] -- Az IBEA (Indicator Based Evolutionary Algorithm) \cite{zitzler2004indicator} alapötlete, hogy egy \textit{bináris hipertérfogat indikátort} használ a szelekciós eljárás szakaszában,
