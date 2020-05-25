@@ -1,0 +1,13 @@
+\section{Többcélú optimalizálás}
+A gyakorlatban számos olyan optimalizálási probléma létezik, ahol nem tudunk egyetlen egyértelmű célfüggvényt meghatározni, például:
+\begin{itemize}
+  \item[\textbullet] egy épület megtervezésekor minimalizálni szeretnénk az energia fogyasztást és az építési költséget, de ugyanakkor maximalizálni a termikus kényelmet \cite{nguyen2014review};
+  \item[\textbullet] több projekt elvállalásakor minimalizálni szeretnénk az összköltséget és a szükséges projektvezetők számát, és maximalizálni a projektek összfontosságát és a befejezett projektek számát \cite{alothaimeen2019overview};
+  \item[\textbullet] egy kőolajfinomító esetén maximalizálni szeretnénk a benzin hozamot, de ugyanakkor minimalizálni a különböző kémiai reakciók során termelődő koksz mennyiségét, amely lerakódik a katalizátorra, és csökkenti ennek reaktivitását \cite{kasat2003multi}.
+\end{itemize}
+
+Tehát ezekben az esetekben nem csak egy $f$ célfüggvényünk van, hanem több darab (pl. energia fogyasztás célfüggvénye, termikus kényelem célfüggvénye, stb.), amelyek halmazát $F$-el fogjuk jelölni.
+Külön-külön az egyes célfüggvények a következő indexelt formában írhatók fel:
+\begin{equation}\label{eqn:OBJECTIVE_FUNCTIONS}
+  f_i \colon \mathbb{P} \to \mathbb{R}, i \in \left\{ 1, 2, \dots, \abs{F} \right\}.
+\end{equation}

@@ -7,6 +7,7 @@ addig a BOCNDP esetén két célfüggvényünk van, amelyeket optimalizálni sze
   \item Maximalizálni szeretnénk az összefüggő komponensek számát.
   \item Minimalizálni szeretnénk az összefüggő komponensek számosságának a varianciáját.
 \end{enumerate}
+
 Ennek érdekében a következő két célfüggvényt vezetjük be:
 \begin{equation}\label{eqn:MAX_CONNECTED_COMPONENTS}
   \max \quad \abs{H},
@@ -31,6 +32,18 @@ de ugyanakkor minimalizálja is a komponensek közötti varianciát.
 
 A $H$ halmaz számosságának meghatározását \aref{lst:NO-CONNECTED-COMPONENTS}. kódrészlet mutatja be Python-ban,
 míg \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlet implementációját \aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlet.
+
+\lstinputlisting[
+  language={Python},
+  caption={A feszített részgráf összefüggő komponenseinek a száma},
+  label={lst:NO-CONNECTED-COMPONENTS}
+]{./progfiles/bi-objective-cndp/no_connected_components.py}
+
+\lstinputlisting[
+  language={Python},
+  caption={Az összefüggő komponensek számosságának a varianciája},
+  label={lst:CARDINALITY-VARIANCE-COMPONENTS}
+]{progfiles/bi-objective-cndp/cardinality_variance_components.py}
 
 
 \subsubsection{Egy példa}
@@ -57,16 +70,3 @@ A $G\left[ V \setminus S \right]$ feszített részgráf szétesik egy egy csomó
   }
   \label{fig:BOCNDP_EXAMPLE}
 \end{figure}
-
-
-\lstinputlisting[
-  language={Python},
-  caption={A feszített részgráf összefüggő komponenseinek a száma},
-  label={lst:NO-CONNECTED-COMPONENTS}
-]{./progfiles/bi-objective-cndp/no_connected_components.py}
-
-\lstinputlisting[
-  language={Python},
-  caption={Az összefüggő komponensek számosságának a varianciája},
-  label={lst:CARDINALITY-VARIANCE-COMPONENTS}
-]{progfiles/bi-objective-cndp/cardinality_variance_components.py}
