@@ -1,73 +1,83 @@
 \section{Dominancia operátorok}
 A multikritériumú genetikus algoritmusok esetén felmerül a kérdés, hogy miként döntjük el, hogy egy megoldás jobb-e vagy rosszabb, mint egy másik.
 Viszont az is megtörténhet, hogy két megoldás összehasonlíthatatlan.
-Ennek a kérdésnek a megválaszolása érdekében szükséges bevezetnünk a \textit{dominancia operátor} fogalmát.
+Ennek a kérdésnek a megválaszolása érdekében szükséges bevezetnünk a \emph{dominancia operátor} fogalmát.
 A dominancia operátor fontos szerepet lát el a multikritériumú genetikus algoritmusok keretein belül,
-mivel a \textit{dominancia reláció} segítségével lesz eldöntve, hogy két megoldás közül melyik dominálja melyiket, vagy hogy egyik sem dominálja a másikat.
-\Aref{sec:KISERLETI_ELOKESZITES}. részben bemutatott multikritériumú genetikus algoritmusok mindegyike esetén több típusú dominanciát fogunk kipróbálni kísérleti célokból.
+mivel a \emph{dominancia reláció} segítségével lesz eldöntve, hogy két megoldás közül melyik dominálja melyiket, vagy hogy egyik sem dominálja a másikat.bemutatott multikritériumú genetikus algoritmusok mindegyike esetén több típusú dominanciát fogunk kipróbálni kísérleti célokból.
 Ezeket a dominancia típusokat szeretnénk a következőkben ismertetni.
 
 
 \subsection{Pareto-dominancia}
-Azt mondjuk, hogy egy $x$ megoldás Pareto-dominál egy $y$ megoldást $\left( x \prec y \right)$, ha teljesül a következő két feltétel:
-\begin{align*}
-  \forall i \in \left\{ 1, 2, \dots, \abs{F} \right\} \colon f_i(x) \leq f_i(y), \\
-  \exists j \in \left\{ 1, 2, \dots, \abs{F} \right\} \colon f_j(x) < f_j(y).
-\end{align*}
+\begin{ert}
+  Azt mondjuk, hogy egy $x$ megoldás \emph{Pareto-dominál} egy $y$ megoldást $\left( x \prec y \right)$, ha teljesül a következő két feltétel:
+  \begin{align*}
+    \forall i \in \left\{ 1, 2, \dots, \abs{F} \right\} \colon f_i(x) \leq f_i(y), \\
+    \exists j \in \left\{ 1, 2, \dots, \abs{F} \right\} \colon f_j(x) < f_j(y).
+  \end{align*}
 
-Tehát az $x$ megoldás minden szempontból legalább olyan jó, mint az $y$, és legalább egy szempontból még jobb is nála.
-
-
-\subsubsection{Pareto-optimum}
-A Pareto-dominancia segítségével bevezethetjük az optimum fogalmát.
-Egy $\hat{x}$ Pareto-optimum, ha nincs még egy olyan megoldásjelölt, ami dominálná őt:
-\[
-  \nexists x \in \mathbb{P} \colon x \prec \hat{x}.
-\]
+  Tehát az $x$ megoldás minden szempontból legalább olyan jó, mint az $y$, és legalább egy szempontból még jobb is nála.
+\end{ert}
 
 
-\subsubsection{Pareto-front}
-Gyakran megtörténik, hogy nem csak egy, hanem több Pareto-optimális megoldásunk van.
-Ebben az esetben a Pareto-optimális megoldások halmazát nevezzük Pareto-frontnak.
+% \subsubsection{Pareto-optimum}
+\begin{ert}
+  A Pareto-dominancia segítségével bevezethetjük az optimum fogalmát.
+  Egy $\hat{x}$ \emph{Pareto-optimum}, ha nincs még egy olyan megoldásjelölt, ami dominálná őt:
+  \[
+    \nexists x \in \mathbb{P} \colon x \prec \hat{x}.
+  \]
+\end{ert}
 
 
-\subsubsection{Egy példa}
-\Aref{fig:PARETO_DOMINANCE}. ábra egy példát mutat a Pareto-optimumokra.
-A probléma két célfüggvény optimalizálásából tevődik össze: az $f_1$ célfüggvény maximalizálásából és az $f_2$ célfüggvény minimalizálásából.
-Tehát egy pont minél távolabb van az origótól az X-tengelyen, de ugyanakkor minél közelebb hozzá az Y-tengelyen, annál jobb.
+% \subsubsection{Pareto-front}
+\begin{ert}
+  Gyakran megtörténik, hogy nem csak egy, hanem több Pareto-optimális megoldásunk van.
+  Ebben az esetben a Pareto-optimális megoldások halmazát nevezzük \emph{Pareto-frontnak}.
+\end{ert}
 
-Néhány következtetés, ami leolvasható a diagramról:
-\begin{itemize}
-  \item[\textbullet] $A \prec B$, mivel mindkét szempont szerint jobb nála;
-  \item[\textbullet] $E \prec A$, mivel $f_2$ szempontjából azonosak, de $f_1$ szerint jobb;
-  \item[\textbullet] $A \nprec D$, mert bár $f_2$ szerint jobb, de $f_1$ szempontjából rosszabb;
-  \item[\textbullet] $D \nprec A$, mert bár $f_1$ szerint jobb, de $f_2$ szempontjából rosszabb;
-  \item[\textbullet] $C$, $E$ pontokat senki se dominálja (ők se egymást), ezért ők alkotják a Pareto-frontot.
-\end{itemize}
 
-Jól látható, hogy a feladatnak nincs egyértelmű megoldása.
-A $C$ és $E$ pontok nem azonosak, mégsem tudjuk az egyiket előnyben részesíteni a másikhoz képest.
-A feladat megoldása tehát ez a két pont.
+% \subsubsection{Egy példa}
+\begin{pld}
+  \Aref{fig:PARETO_DOMINANCE}. ábra egy példát mutat a Pareto-optimumokra.
+  A probléma két célfüggvény optimalizálásából tevődik össze: az $f_1$ célfüggvény maximalizálásából és az $f_2$ célfüggvény minimalizálásából.
+  Tehát egy pont minél távolabb van az origótól az X-tengelyen, de ugyanakkor minél közelebb hozzá az Y-tengelyen, annál jobb.
 
-Fontos megemlítenünk, hogy ez nem hátrány, hanem éppenhogy előny.
-A Pareto-dominancia lehetővé teszi, hogy ne csak egy megoldást kapjunk vissza, hanem akár mindet.
-A többcélú feladatok megoldásánál éppen azt szeretnénk, hogy minél több nem-dominált eredményt kapjunk.
-Mivel legtöbbször a front mérete nagyon nagy, és az összes megoldást nem várhatjuk el, akkor az egymástól minél távolibbakat szeretnénk megkapni.
+  Néhány következtetés, ami leolvasható a diagramról:
+  \begin{itemize}
+    \item[\textbullet] $A \prec B$, mivel mindkét szempont szerint jobb nála;
+    \item[\textbullet] $E \prec A$, mivel $f_2$ szempontjából azonosak, de $f_1$ szerint jobb;
+    \item[\textbullet] $A \nprec D$, mert bár $f_2$ szerint jobb, de $f_1$ szempontjából rosszabb;
+    \item[\textbullet] $D \nprec A$, mert bár $f_1$ szerint jobb, de $f_2$ szempontjából rosszabb;
+    \item[\textbullet] $C$, $E$ pontokat senki se dominálja (ők se egymást), ezért ők alkotják a Pareto-frontot.
+  \end{itemize}
 
-Az, hogy utána melyik megoldás lesz kiválasztva, az már a felhasználó egyéni döntése.
+  Jól látható, hogy a feladatnak nincs egyértelmű megoldása.
+  A $C$ és $E$ pontok nem azonosak, mégsem tudjuk az egyiket előnyben részesíteni a másikhoz képest.
+  A feladat megoldása tehát ez a két pont.
+\end{pld}
+
+\begin{meg}
+  Fontos megemlítenünk, hogy ez nem hátrány, hanem éppenhogy előny.
+  A Pareto-dominancia lehetővé teszi, hogy ne csak egy megoldást kapjunk vissza, hanem akár mindet.
+  A többcélú feladatok megoldásánál éppen azt szeretnénk, hogy minél több nem-dominált eredményt kapjunk.
+  Mivel legtöbbször a front mérete nagyon nagy, és az összes megoldást nem várhatjuk el, akkor az egymástól minél távolibbakat szeretnénk megkapni.
+
+  Az, hogy utána melyik megoldás lesz kiválasztva, az már a felhasználó egyéni döntése.
+\end{meg}
 
 \begin{figure}[t]
   \centering
   \includegraphics[scale=0.5]{images/pareto_dominance.png}
   \caption{
-    Példa egy optimalizálási feladatra, ahol az $f_1$ célfüggvényt maximalizálni, míg az $f_2$ célfüggvényt minimalizálni kell.
+    Példa egy kétcélú optimalizálási feladatra, ahol az $f_1$ célfüggvényt maximalizálni, míg az $f_2$ célfüggvényt minimalizálni kell.
   }
   \label{fig:PARETO_DOMINANCE}
 \end{figure}
 
 
 \subsection{Nash-dominancia}
-A Nash-dominancia fogalmának bevezetése előtt szükséges néhány, a \textit{játékelméletből} \cite{von2007theory} ismert fogalom bevezetése.
+A Nash-dominancia fogalmát \citeN{lung2008computing} vezették be, és a Nash-egyensúly fogalmán alapszik.
+Megértéséhez szükséges néhány, a \emph{játékelméletből} \cite{von2007theory} ismert fogalom bevezetése.
 
 
 \subsubsection{Nem-kooperatív játékok}
@@ -81,19 +91,19 @@ amelyet úgy kapunk, hogy az $s$ stratégiaprofil $i$-edik játékosának a stra
 
 
 \subsubsection{Nash-egyensúly}
-Az előbb bevezetett jelölések segítségével bevezethetjük a nem-kooperatív játékelmélet központi fogalmát, a \textit{Nash-egyensúlyt} \cite{nash1951non}.
+Az előbb bevezetett jelölések segítségével bevezethetjük a nem-kooperatív játékelmélet központi fogalmát, a \emph{Nash-egyensúlyt} \cite{nash1951non}.
 
-Azt mondjuk, hogy az $s^* \in S$ stratégiaprofil Nash-egyensúlyt alkot,
-ha egyik játékosnak sem érdemes egyoldalúan eltérnie a stratégiaprofilban szereplő saját stratégiájától.
-Tehát minden $i \in I$ játékos és $s_i \in S_i$ stratégia esetén, a következő egyenlőtlenség teljesül:
-\[
-  u_i\left(s^*\right) \ge u_i\left(t_i, s_{-i}^*\right).
-\]
+\begin{ert}
+  Azt mondjuk, hogy az $s^* \in S$ stratégiaprofil Nash-egyensúlyt alkot,
+  ha egyik játékosnak sem érdemes egyoldalúan eltérnie a stratégiaprofilban szereplő saját stratégiájától.
+  Tehát minden $i \in I$ játékos és $s_i \in S_i$ stratégia esetén, a következő egyenlőtlenség teljesül:
+  \[
+    u_i\left(s^*\right) \ge u_i\left(t_i, s_{-i}^*\right).
+  \]
+\end{ert}
 
 
 \subsubsection{Nash-dominancia}
-A Nash-dominancia fogalmát \citeN{lung2008computing} vezették be, és a Nash-egyensúly fogalmán alapszik.
-
 Legyen $x$ és $y$ két stratégiaprofil $S$-ből.
 Bevezetünk egy $k \colon S \times S \to \mathbb{N}$ operátort, amely az $\left( x, y \right)$ pároshoz hozzárendeli a következő halmaz számosságát:
 \[
@@ -102,31 +112,107 @@ Bevezetünk egy $k \colon S \times S \to \mathbb{N}$ operátort, amely az $\left
 
 A halmaz azon $i$ játékosokat tartalmazza, akik adott x stratégiaprofil esetén, hasznot húznának abból, ha megváltoztatnák stratégiájukat $x_i$-ről $y_i$-re.
 
-Az $x$ stratégiaprofil akkor dominálja az $y$ stratégiaprofilt Nash értelemben ($x \prec y$), ha teljesül az alábbi feltétel:
-\[
-  k(x,y) < k(y, x).
-\]
+\begin{ert}
+  Azt mondjuk, hogy egy $x$ stratégiaprofil \emph{Nash-dominál} egy $y$ stratégiaprofilt ($x \prec y$), ha teljesül az alábbi feltétel:
+  \[
+    k(x,y) < k(y, x).
+  \]
 
-Tehát egy $x$ stratégiaprofil akkor dominál egy $y$ stratégiaprofilt, ha kevesebb játékos tudja megnövelni nyereségét úgy, hogy megváltoztatja stratégiáját $x_i$-ről $y_i$-re, mint fordítva.
-Azt is mondhatjuk, hogy az $x$ stratégiaprofil stabilabb (közelebb van az egyensúlyhoz), mint az $y$ stratégiaprofil.
-
-
-\subsubsection{Nash-optimum}
-A Nash-dominancia segítségével bevezethetjük az optimum fogalmát.
-Egy $s^* \in S$ stratégiaprofil Nash-optimum, ha nincs még egy olyan stratégiaprofil, ami dominálná őt:
-\[
-  \nexists s \in S, s \neq s^* \colon s \prec s^*.
-\]
+  Tehát egy $x$ stratégiaprofil akkor Nash-dominál egy $y$ stratégiaprofilt, ha kevesebb játékos tudja megnövelni nyereségét úgy, hogy megváltoztatja stratégiáját $x_i$-ről $y_i$-re, mint fordítva.
+  Azt is mondhatjuk, hogy az $x$ stratégiaprofil stabilabb (közelebb van az egyensúlyhoz), mint az $y$ stratégiaprofil.
+\end{ert}
 
 
-\subsubsection{Nash-front}
-Gyakran megtörténik, hogy nem csak egy, hanem több Nash-optimális megoldásunk van.
-Ebben az esetben a Nash-optimális megoldások halmazát nevezzük Nash-frontnak.
+% \subsubsection{Nash-optimum}
+\begin{ert}
+  A Nash-dominancia segítségével bevezethetjük az optimum fogalmát.
+  Egy $s^* \in S$ stratégiaprofil \emph{Nash-optimum}, ha nincs még egy olyan stratégiaprofil, ami dominálná őt:
+  \[
+    \nexists s \in S, s \neq s^* \colon s \prec s^*.
+  \]
+\end{ert}
 
 
-\subsubsection{Nash és a BOCNDP}
-\citeN{lung2008computing} egy fontos következtetésre jutottak, miszerint minden Nash-egyensúlyt alkotó stratégiaprofil egyben Nash-optimum is, és minden Nash-optimum egyben Nash-egyensúlyt alkotó stratégiaprofil is.
-Ez azért elengedhetetlenül fontos eredmény, mivel lehetővé teszi számunkra, hogy evolúciós kereső operátorok (keresztezés, mutáció, kiválasztás) segítségével megkeressük a Nash-egyensúlyt alkotó megoldásokat.
+% \subsubsection{Nash-front}
+\begin{ert}
+  Gyakran megtörténik, hogy nem csak egy, hanem több Nash-optimális megoldásunk van.
+  Ebben az esetben a Nash-optimális megoldások halmazát nevezzük \emph{Nash-frontnak}.
+\end{ert}
+
+
+% \subsubsection{Nash és a BOCNDP}
+\begin{tet}\label{thm:NE_EGYENLO_NF}
+  \citeN{lung2008computing} egy fontos következtetésre jutottak, miszerint minden Nash-egyensúlyt alkotó stratégiaprofil egyben Nash-optimum is, és minden Nash-optimum egyben Nash-egyensúlyt alkotó stratégiaprofil is.
+\end{tet}
+
+Ez azért rendkívül fontos eredmény, mivel lehetővé teszi számunkra, hogy evolúciós kereső operátorok (keresztezés, mutáció, kiválasztás) segítségével megkeressük a Nash-egyensúlyt alkotó megoldásokat.
+
+
+% \subsubsection{Egy példa}
+\begin{pld}
+  A következőkben egy példán keresztül szeretnénk szemléltetni a Nash-dominancia és a Nash-egyensúly közötti kapcsolatot.
+  \Aref{fig:NASH_DOMINANCE}. ábrán látható gráfban $k = 1$ kritikus csomópontot szeretnénk beazonosítani.
+  \Aref{eqn:PAIRWISE_CONNECTIVITY} képlettel leírt függvényt fogjuk használni, mint célfüggvény vagy kifizetőfüggvény.
+  Ez fogja megmondani, hogy egy megoldás vagy stratégiaprofil mennyire jó.
+  Célunk a függvény minimalizálása \ref{eqn:MIN_PAIRWISE_CONNECTIVITY}, mivel minél kisebb értéket ad vissza, annál jobb az illető megoldás.
+
+  A feladatot felfoghatjuk ugyanakkor, mint egy kétszemélyes stratégiai játék.
+  \Aref{tab:NASH_DOMINANCE}. táblázat szemlélteti a feladat lemodellezett változatát, mint kétszemélyes stratégia játék:
+  $I = \left\{ 1, 2 \right\}$ a játékosok halmaza, $S_1 = S_2 = \left\{ A, B, C \right\}$ a stratégiahalmazok, a kifizetéseket a mátrix tartalmazza.
+
+  A Nash-egyensúly megtalálása érdekében mindegyik stratégiaprofilt sorra meg kell vizsgáljuk.
+  Ne felejtsük, hogy minél kisebb a szám, annál nagyobb a játékos nyeresége.
+  \begin{itemize}
+    \item[$(A, A)$] -- A $C$ stratégiát választva az $A$ helyett, az első játékos előnyhöz jut, hiszen $u_1(C, A) = 0 < 1 = u_1(A, A)$.
+          Ezért ez a stratégiaprofil nem alkot Nash-egyensúlyt.
+          Továbbá a második játékos is megnövelheti nyereségét, ha $A$ helyett $C$-t választ, mivel $u_2(A, C) = 0 < 1 = u_2(A, A)$.
+    \item[$(A, B)$] -- Ugyanaz a helyzet, mint az $(A, A)$ stratégiaprofil esetén, ezért nem alkot Nash-egyensúlyt.
+    \item[$(A, C)$] -- A $C$ stratégiát választva az $A$ helyett, az első játékos előnyhöz jut, hiszen $u_1(C, A) = 0 < 1 = u_1(A, A)$.
+          Ezért ez a stratégiaprofil nem alkot Nash-egyensúlyt.
+    \item[$(B, A)$] -- Ugyanaz a helyzet, mint az $(A, A)$ stratégiaprofil esetén, ezért nem alkot Nash-egyensúlyt.
+    \item[$(B, B)$] -- Ugyanaz a helyzet, mint az $(A, A)$ stratégiaprofil esetén, ezért nem alkot Nash-egyensúlyt.
+    \item[$(B, C)$] -- Ugyanaz a helyzet, mint az $(A, C)$ stratégiaprofil esetén, ezért nem alkot Nash-egyensúlyt.
+    \item[$(C, A)$] -- A $C$ stratégiát választva az $A$ helyett, a második játékos előnyhöz jut, hiszen $u_2(C, C) = 0 < 1 = u_2(C, A)$.
+          Ezért ez a stratégiaprofil nem alkot Nash-egyensúlyt.
+    \item[$(C, B)$] -- Ugyanaz a helyzet, mint a $(C, A)$ stratégiaprofil esetén, ezért nem alkot Nash-egyensúlyt.
+    \item[$(C, C)$] -- Egyik játékos sem tudja megnövelni nyereségét úgy, hogy a jelenlegi stratégiája helyett egy másikat választ.
+          Ezért ez a stratégiaprofil Nash-egyensúlyt alkot.
+  \end{itemize}
+
+  Következtetésként elmondhatjuk, hogy ennek a játéknak egy Nash-egyensúlya van, ami nem más, mint a $(C, C)$ stratégiaprofil.
+
+  Ha \aref{sec:KISERLETI_ELOKESZITES} részben bemutatott bármelyik multikritériumú genetikus algoritmus esetén lecseréljük az általa használt Pareto-dominanciát Nash-dominanciára,
+  akkor az algoritmus által meghatározott Nash-front egyetlen Nash-optimális megoldásból fog állni, ami nem lesz más, mint az $S = \left\{ C, C \right\}$ halmaz.
+
+  Láthatjuk, hogy \aref{thm:NE_EGYENLO_NF} tétel igaz, vagyis használhatjuk a multikritériumú genetikus algoritmusokat Nash-egyensúly egyensúlypont-keresésre.
+\end{pld}
+
+\begin{figure}[t]
+  \begin{minipage}{\textwidth}
+    \begin{minipage}[b]{0.3\textwidth}
+      \centering
+      \includegraphics[scale=0.5]{images/nash_dominance.png}
+      \vspace*{2.5mm}
+      \captionof{figure}{Példa egy három csomópontból álló útgráfra.}
+      \label{fig:NASH_DOMINANCE}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.65\textwidth}
+      \centering
+      \resizebox{0.8\textwidth}{!}{
+        \begin{tabular}{ccccc}
+                                                             &                                 & \multicolumn{2}{c}{Második játékos} &                                                                   \\ \cline{2-5}
+          \multicolumn{1}{c|}{}                              & \multicolumn{1}{c|}{}           & \multicolumn{1}{c|}{\textit{A}}     & \multicolumn{1}{c|}{\textit{B}} & \multicolumn{1}{c|}{\textit{C}} \\ \cline{2-5}
+          \multicolumn{1}{c|}{\multirow{2}{*}{Első játékos}} & \multicolumn{1}{c|}{\textit{A}} & \multicolumn{1}{c|}{$1; 1$}         & \multicolumn{1}{c|}{$1; 1$}     & \multicolumn{1}{c|}{$1; 0$}     \\ \cline{2-5}
+          \multicolumn{1}{c|}{}                              & \multicolumn{1}{c|}{\textit{B}} & \multicolumn{1}{c|}{$1; 1$}         & \multicolumn{1}{c|}{$1; 1$}     & \multicolumn{1}{c|}{$1; 0$}     \\ \cline{2-5}
+          \multicolumn{1}{c|}{}                              & \multicolumn{1}{c|}{\textit{C}} & \multicolumn{1}{c|}{$0; 1$}         & \multicolumn{1}{c|}{$0; 1$}     & \multicolumn{1}{c|}{$0; 0$}     \\ \cline{2-5}
+        \end{tabular}
+      }
+      \captionof{table}{A bal oldalon található gráf leképezése egy kétszemélyes stratégiai játékra.}
+      \label{tab:NASH_DOMINANCE}
+    \end{minipage}
+  \end{minipage}
+\end{figure}
 
 
 \subsection{Berge-dominancia}
