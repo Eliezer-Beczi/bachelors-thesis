@@ -1,9 +1,10 @@
-\section{Dominancia operátorok}
+\section{Dominancia operátorok}\label{sec:DOMINANCIA_OPERATOROK}
 A multikritériumú genetikus algoritmusok esetén felmerül a kérdés, hogy miként döntjük el, hogy egy megoldás jobb-e vagy rosszabb, mint egy másik.
 Viszont az is megtörténhet, hogy két megoldás összehasonlíthatatlan.
 Ennek a kérdésnek a megválaszolása érdekében szükséges bevezetnünk a \emph{dominancia operátor} fogalmát.
 A dominancia operátor fontos szerepet lát el a multikritériumú genetikus algoritmusok keretein belül,
-mivel a \emph{dominancia reláció} segítségével lesz eldöntve, hogy két megoldás közül melyik dominálja melyiket, vagy hogy egyik sem dominálja a másikat.bemutatott multikritériumú genetikus algoritmusok mindegyike esetén több típusú dominanciát fogunk kipróbálni kísérleti célokból.
+mivel a \emph{dominancia reláció} segítségével lesz eldöntve, hogy két megoldás közül melyik dominálja melyiket, vagy hogy egyik sem dominálja a másikat.
+Az NSGAII multikritériumú genetikus algoritmus esetén több típusú dominanciát fogunk kipróbálni kísérleti célokból.
 Ezeket a dominancia típusokat szeretnénk a következőkben ismertetni.
 
 
@@ -114,9 +115,9 @@ A halmaz azon $i$ játékosokat tartalmazza, akik adott $x$ stratégiaprofil ese
 
 \begin{ert}
   Azt mondjuk, hogy egy $x$ stratégiaprofil \emph{Nash-dominál} egy $y$ stratégiaprofilt ($x \prec y$), ha teljesül az alábbi feltétel:
-  \[
+  \begin{equation}\label{eqn:NASH_DOMINANCIA}
     k(x,y) < k(y, x).
-  \]
+  \end{equation}
 \end{ert}
 
 Tehát egy $x$ stratégiaprofil akkor Nash-dominál egy $y$ stratégiaprofilt, ha kevesebb játékos tudja megnövelni nyereségét úgy, hogy megváltoztatja stratégiáját $x_i$-ről $y_i$-re, mint fordítva.
@@ -305,9 +306,9 @@ A halmaz azon $i$ játékosokat tartalmazza, akik adott $x$ stratégiaprofil ese
 
 \begin{ert}
   Azt mondjuk, hogy egy $x$ stratégiaprofil \emph{Berge-dominál} egy $y$ stratégiaprofilt ($x \prec y$), ha teljesül az alábbi feltétel:
-  \[
+  \begin{equation}\label{eqn:BERGE_DOMINANCIA}
     b(x,y) < b(y, x).
-  \]
+  \end{equation}
 \end{ert}
 
 Tehát egy $x$ stratégiaprofil akkor Berge-dominál egy $y$ stratégiaprofilt, ha kevesebb játékos tudja megnövelni nyereségét úgy, hogy megváltoztatja a többi játékos stratégiáját $y_i$-ről $x_i$-re, mint fordítva.

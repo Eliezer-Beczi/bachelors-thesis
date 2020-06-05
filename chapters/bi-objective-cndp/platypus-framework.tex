@@ -1,0 +1,93 @@
+\section{A Platypus keretrendszer}\label{sec:PLATYPUS_FRAMEWORK}
+
+
+A Platypus keretrendszert \citeN{hadka2017platypus} fejlesztette ki.
+Ez egy evolúciós számítások elvégzésére szolgáló keretrendszer, amely a többcélú evolúciós algoritmusokra összpontosít.
+A keretrendszer a következő elemekből tevődik össze:
+
+\begin{itemize}
+  \itemsep-0.17em
+  \item[\textbullet] többcélú evolúciós algoritmusokból (NSGAII, NSGAIII, EpsMOEA stb.);
+  \item[\textbullet] szelekciós operátorokból (versengő kiválasztás);
+  \item[\textbullet] rekombinációs operátorokból (SBX, PCX, HUX stb.);
+  \item[\textbullet] mutációs operátorokból (PM, UM, BM stb.);
+  \item[\textbullet] reprezentációk különböző típusaiból (valós, bináris, részhalmaz stb.);
+  \item[\textbullet] dominancia operátorokból (Pareto-dominancia, $\epsilon$-dominancia, attribútum-dominancia).
+\end{itemize}
+
+A Platypus keretrendszer modularizáltságának köszönhetően könnyű új algoritmusokkal vagy operátorokkal kibővíteni a rendszert.
+De nem csak kibővíteni lehet, hanem meglévő algoritmusok által használt elemeket lecserélni már meglévő vagy általunk definiált elemekre.
+Így az algoritmus váza nem változik, viszont lehetőség nyílik különböző operátorok összehasonlítására egy algoritmus esetén.
+
+A következőkben \aref{sec:DOMINANCIA_OPERATOROK}. részben bemutatott dominancia operátorok implementációt szeretnénk ismertetni a Platypus keretrendszer által biztosított környezetben.
+
+% Nash
+\subsection{Operátorok definiálása}
+
+
+\subsubsection{Nash-dominancia}
+\Aref{lst:BOCNDP-NASH-DOMINANCE}. kódrészlet szemlélteti \aref{eqn:NASH_DOMINANCIA} képlettel leírt Nash-dominancia implementációját a Platypus keretrendszer segítségével.
+
+\lstinputlisting[
+  language={Python},
+  caption={A Nash-dominancia implementációja a Platypus keretrendszerben.},
+  label={lst:BOCNDP-NASH-DOMINANCE}
+]{./progfiles/bi-objective-cndp/bocndp_nash_dominance.py}
+
+Ahhoz, hogy egy új dominancia operátort vezethessünk be a rendszerbe, amit majd kipróbálhatunk különböző multikritériumú genetikus algoritmusok esetén,
+egy osztályt kell létrehoznunk, amely a Platypus keretrendszer által biztosított \emph{Dominance} osztályt örököli.
+Ezt az osztályt mi úgy neveztük el, hogy \emph{NashDominance}, és a \emph{Dominance} szülőosztály egyetlen metódusát írja fölül, a \emph{compare} metódust.
+
+A \emph{compare} eljárás fog két megoldást - $x$ és $y$ - összehasonlítani, és visszatéríti, hogy melyik Nash-dominálja melyiket, vagy hogy egyik sem dominálja a másikat.
+A metódus \aref{lst:NO-CONNECTED-COMPONENTS}. és \aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészletekkel szemléltetett függvényeket használja:
+az első a gráf összefüggő komponenseit számolja ki, a második pedig az összefüggő komponensek számosságának a varianciáját (lásd \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} egyenletet).
+Ezeket a célfüggvényeket akarjuk optimalizálni: az elsőt maximalizálni, míg a másodikat minimalizálni.
+
+
+\subsubsection{Berge-dominancia}
+\Aref{lst:BOCNDP-BERGE-DOMINANCE}. kódrészlet szemlélteti \aref{eqn:BERGE_DOMINANCIA} képlettel leírt Berge-dominancia implementációját a Platypus keretrendszer segítségével.
+Az operátor bevezetéséhez a rendszerbe ugyanazon lépéseket kell végrehajtanunk, mint a Nash-dominancia esetén.
+
+\lstinputlisting[
+  language={Python},
+  caption={A Berge-dominancia implementációja a Platypus keretrendszerben.},
+  label={lst:BOCNDP-BERGE-DOMINANCE}
+]{./progfiles/bi-objective-cndp/bocndp_berge_dominance.py}
+
+
+\subsection{Problémák definiálása}
+Ahhoz, hogy egy bármilyen problémát meg tudhassunk oldani a Platypus keretrendszer által biztosított algoritmusokkal, szükséges először definiálnunk a feladatot.
+Ebben nyújt nekünk segítséget a Platypus \emph{Problem} osztálya, amely két paramétert vár el tőlünk: a döntési változók és a célok számát.
+Meg kell adjuk minden döntési változó típusát vagy reprezentációját, valamint minden cél optimalizálási irányát (minimalizálás vagy maximalizálás).
+Továbbá felül kell írjuk a \emph{Problem} szülőosztály \emph{evaluate} függvényét, amely egy megoldás kiértékeléséért felelős.
+A BOCNDP definiálását hívatott szemléltetni \aref{lst:BOCNDP-PROBLEM}. kódrészlet.
+
+\lstinputlisting[
+  language={Python},
+  caption={A BOCNDP definiálása a Platypus keretrendszerben.},
+  label={lst:BOCNDP-PROBLEM}
+]{./progfiles/bi-objective-cndp/bocndp_problem.py}
+
+Amint látható, létrehozunk egy \emph{BOCNDP} nevű osztályt, amely a Platypus által biztosított \emph{Problem} osztály leszármazottja.
+A konstruktorban meghívjuk a szülőosztály \emph{init} metódusát, amely beállítja a döntési változók számát $1$-re, a célok számát pedig $2$-re.
+Megmondjuk, hogy a döntési változót a $G$ gráf csomóponthalmazának egy $k$ elemű részhalmazával fogjuk ábrázolni, valamint azt, hogy az első célfüggvényt maximalizálni, míg a másodikat minimalizálni szeretnénk.
+
+Ezután felülírjuk a \emph{Problem} osztály \emph{evaluate} metódusát. Itt történik egy megoldás tényleges kiértékelése.
+Beállítjuk mint első célfüggvény \aref{lst:NO-CONNECTED-COMPONENTS}. kódrészlettel leírt függvényt, ami a $G$ gráf összefüggő komponenseinek a számát téríti,
+\aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlettel leírt függvényt pedig, ami az összefüggő komponensek számosságának a varianciáját téríti, mint második célfüggvény.
+Ahogy az imént említettük, az első célfüggvényt maximalizálni, míg a másodikat minimalizálni fogjuk.
+
+
+\subsection{Algoritmusok definiálása}
+A Platypus keretrendszer számos kész multikritériumú genetikus algoritmust tartalmaz, de lehetőséget ad új algoritmusok definiálására is az \emph{Algorithm} osztály kiterjesztése révén.
+Ugyanakkor lehetővé teszi a már meglévő algoritmusok testreszabását: egy algoritmus példányosításakor vagy felépítésekor megadhatjuk argumentumként a használni kívánt operátorokat.
+
+\lstinputlisting[
+  language={Python},
+  caption={A BOCNDP megoldása az NSGAII algoritmus és a Nash-dominancia használatával.},
+  label={lst:BOCNDP-EXAMPLE}
+]{./progfiles/bi-objective-cndp/bocndp_example.py}
+
+\Aref{lst:BOCNDP-EXAMPLE}. kódrészlet szemlélteti az NSGAII algoritmus egy testreszabott változatának a létrehozási folyamatát,
+ahol beállítjuk, hogy \aref{lst:BOCNDP-PROBLEM}. kódrészlettel leírt \emph{BOCNDP} problémát oldja meg, és \aref{lst:BOCNDP-NASH-DOMINANCE}. kódrészlettel leírt \emph{NashDominance} osztályt használja mint dominancia operátor.
+Ezután lefuttatjuk az algoritmust $10\,000$-es iterációszámmal, utána pedig kiíratjuk a Nash-optimális megoldásokat.
