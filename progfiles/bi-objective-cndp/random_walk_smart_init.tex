@@ -1,0 +1,38 @@
+\begin{algorithm}[t]
+  \caption{Random walk solution generator}\label{alg:RANDOM-WALK-SMART-INIT}
+  \begin{algorithmic}[1]
+    \Function{Random Walk Generator}{$G, k, t, p_r$}
+    \State $visited \leftarrow \emptyset$
+
+    \While{$True$}
+    \State $core \leftarrow \Call{Select}{V}$
+    \State $current \leftarrow core$
+
+    \For{$i \leftarrow 1, t+1$}
+    \If{$current \in visited$}
+    \State $visited\left[current\right] \leftarrow visited\left[current\right] + 1$
+    \Else
+    \State $visited\left[current\right] \leftarrow 1$
+    \EndIf
+
+    \State $restart \leftarrow \Call{Rand Int}{1, 100}$
+    \If{$restart \leq p_r$}
+    \State $current \leftarrow core$
+    \Else
+    \State $neighbors \leftarrow \Call{Neighbors}{G, current}$\Comment{Neighbors of the $current$ node}
+    \State $current \leftarrow \Call{Select}{neighbors}$
+    \EndIf
+    \EndFor
+
+    \If{$\abs{visited} \geq k$}
+    \State \textbf{break}
+    \Else
+    \State $visited \leftarrow \emptyset$
+    \EndIf
+    \EndWhile
+
+    \State $\Call{Sort}{visited}$\Comment{Sort nodes in $visited$ according to visits paid in DESC order}
+    \State \Return $visited\left[ {:}\,k \right]$\Comment{Take the first $k$ most visited nodes}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

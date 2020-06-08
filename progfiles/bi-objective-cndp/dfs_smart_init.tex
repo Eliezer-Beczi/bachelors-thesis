@@ -1,0 +1,10 @@
+\begin{algorithm}[h]
+  \caption{Depth-first search solution generator}\label{alg:DFS-SMART-INIT}
+  \begin{algorithmic}[1]
+    \Function{Dfs Generator}{$G, k, x$}
+    \State $start \leftarrow \Call{Select}{V}$
+    \State $S \leftarrow \Call{Dfs}{G, start}$
+    \State \Return $S\left[ {::}\,x \right]$\Comment{Take every $x$th element}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}

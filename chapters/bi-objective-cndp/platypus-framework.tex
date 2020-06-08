@@ -91,3 +91,9 @@ Ugyanakkor lehetővé teszi a már meglévő algoritmusok testreszabását: egy 
 \Aref{lst:BOCNDP-EXAMPLE}. kódrészlet szemlélteti az NSGAII algoritmus egy testreszabott változatának a létrehozási folyamatát,
 ahol beállítjuk, hogy \aref{lst:BOCNDP-PROBLEM}. kódrészlettel leírt \emph{BOCNDP} problémát oldja meg, és \aref{lst:BOCNDP-NASH-DOMINANCE}. kódrészlettel leírt \emph{NashDominance} osztályt használja mint dominancia operátor.
 Ezután lefuttatjuk az algoritmust $10\,000$-es iterációszámmal, utána pedig kiíratjuk a Nash-optimális megoldásokat.
+
+
+\subsection{Generátorok definiálása}
+A Platypus keretrendszer lehetővé teszi, hogy saját generátorokat definiáljunk, amelyek segítségével tetszőlegesen inicializálni tudjuk a kezdeti populációt.
+A Platypus által biztosított \emph{Generator} osztály kiterjesztésével, és a \emph{generate} metódus felülírásával érhetjük el ezt.
+Három sajátos inicializálási módszert használtunk a BOCNDP esetén, amelyeket a következő részben fogunk részletesen bemutatni.

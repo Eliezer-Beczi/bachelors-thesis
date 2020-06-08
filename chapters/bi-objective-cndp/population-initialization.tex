@@ -1,0 +1,36 @@
+\section{A kezdeti populáció inicializálása}
+
+
+Ugyanúgy, mint \aref{ch:EGYCELU_CNDP}. fejezetben bemutatott CNDP esetén, ahol \aref{sec:MEMETIKUS_ALGORITMUS}. részben leírt memetikus algoritmus keretein belül a populációt intelligens módon inicializáltuk, a BOCNDP esetén is kísérletezni fogunk különböző inicializálási módszerekkel.
+Ez azért lényeges, mert ha eleve olyan megoldásokból indulunk ki, amelyek magukban tárolnak valamit a hálózat szerkezetéről, akkor megtörténhet, hogy jobb eredményekhez jutunk rövidebb idő alatt.
+Ezeket a módszereket szeretnénk a következőkben ismertetni.
+
+
+\subsection{DFS alapján}
+Az első módszer abban áll, hogy kiindítunk egy mélységi bejárást (DFS) a $G$ gráf egy véletlen csomópontjából,
+majd az így kapott csomóponthalmaz minden $x$-edik elemét különválasztjuk, $x = \dfrac{\abs{V}}{k}$.
+A különválasztott csomópontok halmaza fogja alkotni a kezdeti populáció egy egyedét.
+\Aref{alg:DFS-SMART-INIT} algoritmus szemlélteti a mélységi bejáráson alapuló intelligens inicializálási módszert.
+\input{progfiles/bi-objective-cndp/dfs_smart_init}
+
+
+\subsection{Fokszám alapján}
+A második módszer a csomópontok fokszám központiságán alapszik, vagyis minél több éllel rendelkezik egy csomópont, annál nagyobb valószínűséggel fog bekerülni a kezdeti populáció egy egyedének a halmazába.
+A generált megoldás első $x$ elemét a gráf legmagasabb fokszámmal rendelkező csomópontjai képezik, a maradék $(k - x)$ elemét pedig véletlenszerűen kiválasztott csomópontok.
+Ha az egyedek halmazait kizárólag a legmagasabb fokszámú csomópontokból építenénk fel, akkor a kezdeti populáció egyedei mind egyformák lennének, hiszen a bemeneti $G$ gráf nem változik.
+Ezért szükséges, hogy a generált megoldás egy részét a legnagyobb fokszámú csomópontok, míg a másik részét véletlenszerűen kiválasztott csomópontok alkossák.
+\Aref{alg:DEGREE-SMART-INIT} algoritmus szemlélteti a fokszám központiságon alapuló intelligens inicializálási módszert.
+\input{progfiles/bi-objective-cndp/degree_smart_init}
+
+
+\subsection{Véletlen séta alapján}
+A harmadik és egyben utolsó módszer a véletlen sétán alapszik. Elindulunk a $G$ bemeneti gráf egy véletlen módon kiválasztott csomópontjából, és minden lépésben meglátogatjuk a jelenlegi csomópont valamelyik szomszédját, amit ugyancsak véletlen módon választunk ki.
+Miközben sétálunk, számon tartjuk mindegyik csomópont esetén, hogy hányszor látogattuk meg.
+Ez kulcsfontosságú, mivel ennek alapján fogjuk eldönteni, hogy mely csomópontok kerüljenek be a generált megoldásba.
+Minél többször volt egy csomópont meglátogatva, annál nagyobb eséllyel fog bekerülni a kezdeti populáció egy egyedének a halmazába.
+A séta hosszát a $t$ változó mondja meg, és lesz egy $p_r$ valószínűség, ami az újrakezdés valószínűségét fogja jelenteni.
+Minden lépésben eldöntjük, hogy folytatjuk vagy újrakezdjük a sétát.
+Újrakezdés esetén visszatérünk ahhoz a csomóponthoz, amelyikből a sétát indítottuk.
+Ha a séta végére nem sikerült $k$ különböző csomópontot meglátogatnunk, akkor a sétát újra indítjuk, de most már egy új csomópontból.
+\Aref{alg:RANDOM-WALK-SMART-INIT} algoritmus szemlélteti a véletlen sétán alapuló intelligens inicializálási módszert.
+\input{progfiles/bi-objective-cndp/random_walk_smart_init}

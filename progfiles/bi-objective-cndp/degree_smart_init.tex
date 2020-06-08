@@ -1,0 +1,19 @@
+\begin{algorithm}[t]
+  \caption{Degree solution generator}\label{alg:DEGREE-SMART-INIT}
+  \begin{algorithmic}[1]
+    \Function{Degree Generator}{$G, k, x$}
+    \State $V' \leftarrow \Call{Sorted}{V}$\Comment{Sort nodes according to their degree in DESC order}
+    \State $S \leftarrow V'\left[ {:}\,x \right]$\Comment{Take first $x$ nodes with the highest degree}
+
+    \While{$\abs{S} < k$}
+    \State $node \leftarrow \Call{Select}{V'}$
+    \If{$node \notin S$}
+    \State $S \leftarrow S \cup \left\{ node \right\}$
+    \EndIf
+    \EndWhile
+
+    \State $\Call{Shuffle}{S}$
+    \State \Return $S$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
