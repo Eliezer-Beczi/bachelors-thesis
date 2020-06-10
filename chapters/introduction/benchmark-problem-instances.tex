@@ -1,7 +1,8 @@
 \section{Bemeneti tesztgráfok}\label{sec:BENCHMARK-PROBLEM-INSTANCES}
 Benchmark tesztelés végett a \citeN{ventresca2012global} által javasolt gráfhalmazt fogjuk használni, amelyben négy alapvető típus jelenik meg, mindegyik a maga jellegzetességeivel.
 \Aref{tab:BENCHMARK_INSTANCES}. táblázat bemutatja az illető gráfhalmazt, feltüntetve mindegyik bemenet esetén a következő tulajdonságokat:
-a példány nevét, a csomópontok $\abs{V}$ és az élek $\abs{E}$ számát, a törlendő (kritikus) csomópontok számát $\left( k \right)$.
+a példány nevét, a csomópontok $\abs{V}$ és az élek $\abs{E}$ számát, a törlendő (kritikus) csomópontok számát $\left( k \right)$,
+a gráf átlagos fokszámát $\langle d \rangle$, átmérőjét ($D$), sűrűségét ($\rho$), modularitását ($Q$) és átlagos távolságát ($l_G$).
 A következőkben ezeket a modelleket szeretnénk röviden ismertetni.
 
 
@@ -45,29 +46,34 @@ Továbbá, ezen hálózatok magas klaszterezettségi együtthatóval rendelkezne
       >{\raggedleft\arraybackslash}X
       >{\raggedleft\arraybackslash}X
       >{\raggedleft\arraybackslash}X
+      >{\raggedleft\arraybackslash}X
+      >{\raggedleft\arraybackslash}X
+      >{\raggedleft\arraybackslash}X
+      >{\raggedleft\arraybackslash}X
+      >{\raggedleft\arraybackslash}X
     }
     \Xhline{4\arrayrulewidth}
-    Gráf   & $\abs{V}$ & $\abs{E}$ & $k$   \\
+    Gráf   & $\abs{V}$ & $\abs{E}$ & $k$   & $\langle d \rangle$ & $D$  & $\rho$  & $Q$     & $l_G$   \\
     \Xhline{4\arrayrulewidth}
-    BA500  & $500$     & $499$     & $50$  \\
-    BA1000 & $1000$    & $999$     & $75$  \\
-    BA2500 & $2500$    & $2499$    & $100$ \\
-    BA5000 & $5000$    & $4999$    & $150$ \\
+    BA500  & $500$     & $499$     & $50$  & $1.996$             & $13$ & $0.004$ & $0.886$ & $5.663$ \\
+    BA1000 & $1000$    & $999$     & $75$  & $1.998$             & $18$ & $0.002$ & $0.910$ & $6.045$ \\
+    BA2500 & $2500$    & $2499$    & $100$ & $1.999$             & $17$ & $0.001$ & $0.946$ & $6.901$ \\
+    BA5000 & $5000$    & $4999$    & $150$ & $2.000$             & $24$ & $0.000$ & $0.963$ & $8.380$ \\
     \hline
-    ER250  & $235$     & $350$     & $50$  \\
-    ER500  & $466$     & $700$     & $80$  \\
-    ER1000 & $941$     & $1400$    & $140$ \\
-    ER2500 & $2344$    & $3500$    & $200$ \\
+    ER250  & $235$     & $350$     & $50$  & $2.979$             & $14$ & $0.013$ & $0.603$ & $5.338$ \\
+    ER500  & $466$     & $700$     & $80$  & $3.004$             & $14$ & $0.006$ & $0.631$ & $5.973$ \\
+    ER1000 & $941$     & $1400$    & $140$ & $2.976$             & $16$ & $0.003$ & $0.649$ & $6.558$ \\
+    ER2500 & $2344$    & $3500$    & $200$ & $2.986$             & $16$ & $0.001$ & $0.663$ & $7.516$ \\
     \hline
-    FF250  & $250$     & $514$     & $50$  \\
-    FF500  & $500$     & $828$     & $110$ \\
-    FF1000 & $1000$    & $1817$    & $150$ \\
-    FF2000 & $2000$    & $3413$    & $200$ \\
+    FF250  & $250$     & $514$     & $50$  & $4.112$             & $14$ & $0.017$ & $0.638$ & $4.816$ \\
+    FF500  & $500$     & $828$     & $110$ & $3.312$             & $15$ & $0.007$ & $0.798$ & $6.026$ \\
+    FF1000 & $1000$    & $1817$    & $150$ & $3.634$             & $20$ & $0.004$ & $0.793$ & $6.173$ \\
+    FF2000 & $2000$    & $3413$    & $200$ & $3.413$             & $19$ & $0.002$ & $0.880$ & $7.587$ \\
     \hline
-    WS250  & $250$     & $1246$    & $70$  \\
-    WS500  & $500$     & $1496$    & $125$ \\
-    WS1000 & $1000$    & $4996$    & $200$ \\
-    WS2000 & $1500$    & $4498$    & $265$ \\
+    WS250  & $250$     & $1246$    & $70$  & $9.968$             & $6$  & $0.040$ & $0.697$ & $3.327$ \\
+    WS500  & $500$     & $1496$    & $125$ & $5.984$             & $10$ & $0.012$ & $0.789$ & $5.304$ \\
+    WS1000 & $1000$    & $4996$    & $200$ & $9.992$             & $7$  & $0.010$ & $0.803$ & $4.444$ \\
+    WS2000 & $1500$    & $4498$    & $265$ & $5.997$             & $15$ & $0.004$ & $0.872$ & $7.554$ \\
     \Xhline{4\arrayrulewidth}
   \end{tabularx}
 \end{table}
