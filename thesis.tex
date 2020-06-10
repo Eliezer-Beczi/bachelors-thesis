@@ -25,6 +25,12 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
+\providecommand{\keywords}[1]
+{
+  \small
+  \textbf{\textit{Keywords:}} #1
+}
+
 % milyen nyelveken akarunk forráskódot megjeleníteni
 \lstloadlanguages{Python}
 % más lehetőségek:
@@ -94,51 +100,40 @@ Assoc. prof. dr. Gaskó Noémi
 
 \begin{document}
 
-%% ABSTRACT
-\begin{abstractEN} % ANGOL VÁLTOZAT
-
-  % a lenti részt értelemszerűen ki kell tölteni a dolgozat angol kivonatával.
-  % A BEGIN ... END között CSAK A SAJÁT SZÖVEG kell, hogy legyen.
-  % Az utolsó mondatot benne kell hagyni, mely által kijelentitek, hogy a munkátok SAJÁT.
-
-
-  {
-
-    \vfill
-
-    \center{
-
-      {\huge EZ AZ OLDAL NEM RÉSZE A DOLGOZATNAK!}
-
-      \vspace{0.5cm}
-
-      {\Large Ezt az angol kivonatot külön lapra kell nyomtatni és alá kell írni!}
-
-      \vspace{0.5cm}
-
-      {\huge A DOLGOZATTAL EGYÜTT KELL BEADNI!}
-
-    }
-
-    \vfill
-
-    Kötelező befejezés:
-  }
-  \vspace*{.5cm}
-
-  This work is the result of my own activity. I have neither given nor received unauthorized assistance on this work.
-
-\end{abstractEN}
-
 % ez a címoldal része
 \maketitle
 
-%%
+%% ABSTRACT
+\begin{abstractEN} % ANGOL VÁLTOZAT
+  {
+    \vfill
+    The purpose of this paper is to address the critical node detection problem (CNDP).
+    The CNDP is an optimization problem that consists of finding a subset of nodes that the deletion of will greatly decrease the connectivity of the network.
+    We approach the problem from two different perspectives: from a single-objective and a bi-objective standpoint.
+    The single-objective formulation of the CNDP aims to minimize the pairwise connectivity of the graph, whereas the goal of the bi-objective one (BOCNDP) is to maximize the number of connected components while simultaneously minimizing the variance of their cardinalities.
+    For solving the CNDP we propose three different algorithms: a greedy, a genetic and a memetic algorithm.
+    In the case of the BOCNDP, we use six common MOEAs (NSGA-II, PAES etc.), and experiment with different dominance operators, such as Pareto-, Nash- and Berge-dominance.
+    Finally, we give a brief comparison of the algorithms using a benchmark set that contains four groups of graphs with different characteristics (Barabási–Albert, Erdős–Rényi etc.).
+    \\[.5cm]
+    \keywords{
+      complex networks,
+      critical node detection problem,
+      single-objective,
+      bi-objective,
+      evolutionary algorithms,
+      game theory
+    }
+    \vfill
+  }
+  \vspace*{.5cm}
+  This work is the result of my own activity. I have neither given nor received unauthorized assistance on this work.
+\end{abstractEN}
 
 % a dolgozat tartalomjegyzéke -- ez automatikusan generálódik a STRUKTÚRA alapján.
-{ \baselineskip 1ex
-  \parskip 1ex
-  \tableofcontents
+{
+\baselineskip 1ex
+\parskip 1ex
+\tableofcontents
 }
 
 
@@ -156,7 +151,7 @@ Assoc. prof. dr. Gaskó Noémi
 \include{chapters/introduction/introduction}
 \include{chapters/single-objective-cndp/single-objective-cndp}
 \include{chapters/bi-objective-cndp/bi-objective-cndp}
-
+\include{chapters/conclusions/conclusions}
 
 { \renewcommand{\baselinestretch}{0.8}
   \normalsize
