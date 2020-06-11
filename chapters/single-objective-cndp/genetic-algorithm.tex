@@ -25,7 +25,7 @@ amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy 
 és létrehozunk egy új populációt eltávolítva a rossz megoldásokat.
 A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
 Az algoritmus végén visszatérítjük a legjobb megoldást.
-A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} kódrészlet szemlélteti.
+A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} algoritmus szemlélteti.
 \input{progfiles/single-objective-cndp/ga/genetic_algorithm}
 
 
@@ -40,7 +40,7 @@ akkor a kromoszómát egy öt elemű halmazzal fogjuk reprezentálni: $\left\{g_
 \subsubsection{Inicializáció}
 A kezdeti populáció egyedeit random generáljuk ki.
 Ez azt jelenti, hogy minden egyed kromoszómája egy $k$ csomópontból álló részhalmaza lesz a bemeneti gráf csomóponthalmazának.
-Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} kódrészlet.
+Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} algoritmus.
 \input{progfiles/single-objective-cndp/ga/random_solution}
 
 Egy új fitnesz függvényt vezetünk be egy egyed jóságának felmérése végett.
@@ -70,7 +70,7 @@ Ez arra jó, hogy fenntartsuk a populáció sokféleségét abban az esetben,
 amikor nem tudunk javítani az eddig talált legjobb megoldáson,
 mindezt úgy, hogy megnöveljük a mutációk kialakulásának a valószínűségét.
 
-Az $S^{*}$, $\gamma$ és $\pi$ változók frissítését \aref{alg:GENETIKUS-ALGORITMUS:UPDATE} kódrészlet mutatja be.
+Az $S^{*}$, $\gamma$ és $\pi$ változók frissítését \aref{alg:GENETIKUS-ALGORITMUS:UPDATE} algoritmus mutatja be.
 \input{progfiles/single-objective-cndp/ga/update}
 
 
@@ -85,11 +85,10 @@ Esetünkben úgy történik egy új egyed létrehozása, hogy random módon kiv�
 Mivel majdnem biztos, hogy az így kapott egyed kromoszómája több, mint $k$ csomópontot tartalmaz,
 ezért szükséges törölnünk belőle nódusokat, amíg $\abs{S'} > k$.
 Az hogy melyik nódus kerül törlésre az új egyed kromoszómájából, random módon történik.
-A reprodukciós folyamatot \aref{alg:GENETIKUS-ALGORITMUS:REPRODUKCIO} kódrészlet szemlélteti.
+A reprodukciós folyamatot \aref{alg:GENETIKUS-ALGORITMUS:REPRODUKCIO} algoritmus szemlélteti.
 \input{progfiles/single-objective-cndp/ga/crossover}
 
-Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki  egyed esetén egyed létrehozásához,
-ezért a populáció egyedei között nem teszünk különbséget.
+Fontos megemlítenünk, hogy mivel a szülőket random módon választjuk ki, ezért a populáció egyedei között nem teszünk különbséget.
 Vagyis keresztezéskor nem nézzük, hogy csak a legrátermettebb szülőket válasszuk,
 hanem egyenlő eséllyel választunk kevésbé jó fitnesz értékkel rendelkező egyedet is szülőnek.
 Ez lelassítja a populáció uniformizálódásának folyamatát, de segíti a megoldástér bejárását.
@@ -104,10 +103,7 @@ A következő nagy jelentőséggel bíró fázisa a genetikus algoritmusnak a mu
 Mutáció alatt azt értjük, hogy vesszük az újonnan létrejött populációt,
 és a populációban található egyedek génjeit perturbáljuk valamilyen csekély valószínűséggel.
 A mutáció azért tartozik a nagy döntések halmazába,
-mert a mutáció révén fenntartjuk a populáció sokféleségét, és elkerüljük a korai konvergenciát.
-\footnote{
-  Angolul: premature convergence.
-}
+mert a mutáció révén fenntartjuk a populáció sokféleségét, és elkerüljük a korai konvergenciát\footnote{ Angolul: premature convergence. }.
 
 A populáció minden egyes új egyede esetén, a mutáció valószínűségét a $\pi$ paraméter befolyásolja.
 Generálunk egy egyenletes eloszlású véletlen számot $1$ és $100$ között, és ha ez kisebb, mint $\pi$, akkor módosítjuk a megoldást.
@@ -117,7 +113,7 @@ A következő lépés, hogy kitörlünk $n_{g}$ csomópontot a megoldásból, de
 hogy a megoldásunk így nem-optimális, mert $\abs{S} < k$, ezért szükséges visszaadogatnunk csomópontokat $S$-be.
 Ennek érdekében véletlenszerűen kiválasztunk egy csomópontot a $V \setminus S$ halmazból,
 és a kiválasztott csomópontot visszatesszük a megoldásba.
-\Aref{alg:GENETIKUS_ALGORITMUS:MUTACIO} kódrészlet a mutáció műveletét hívatott bemutatni.
+\Aref{alg:GENETIKUS_ALGORITMUS:MUTACIO} algoritmus a mutáció műveletét hívatott bemutatni.
 \input{progfiles/single-objective-cndp/ga/mutation}
 
 
@@ -125,8 +121,8 @@ Ennek érdekében véletlenszerűen kiválasztunk egy csomópontot a $V \setminu
 Az utolsó fázisa a genetikus algoritmusunknak a szelekció.
 Itt döntjük el, hogy mely egyedek fogják alkotni a következő nemzedéket.
 Jelen esetben ez úgy megy végbe, hogy összefésüljük a régi $P$ és az újonnan létrejött $P'$ populációkat,
-és rendezzük az egyedeket \aref{eqn:SOCNDP_GA_FITNESZ_FUNCTION} fitnesz függvény alapján.
+és rendezzük az egyedeket a (\ref{eqn:SOCNDP_GA_FITNESZ_FUNCTION}) fitnesz függvény alapján.
 Növekvő sorrendbe rendezzük őket, mivel nem szabad elfelejtenünk, hogy célunk végső soron a páronkénti konnektivitás minimalizálása.
 Ezután kiválasztjuk az első $N$ egyedet, és ezeket visszük tovább a következő iterációba.
-Genetikus algoritmusunk szelekciós szakaszát \aref{alg:GENETIKUS-ALGORITMUS:SZELEKCIO} kódrészlet ismerteti.
+Genetikus algoritmusunk szelekciós szakaszát \aref{alg:GENETIKUS-ALGORITMUS:SZELEKCIO} algoritmus ismerteti.
 \input{progfiles/single-objective-cndp/ga/selection}

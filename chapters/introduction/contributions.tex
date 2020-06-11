@@ -1,6 +1,8 @@
 \section{Hozzájárulásaink}\label{sec:HOZZAJARULASAINK}
 
-Ebben a dolgozatban többek között egy bi-objektív megfogalmazásával fogunk foglalkozni a CNDP-nek.
-Standard evolúciós algoritmusokat fogunk összehasonlítani egymással különböző szintetikus bemenetekre, illetve való világból inspirált bemenetekre,
-ugyanakkor célunk egy új hibrid algoritmus fejlesztése, melynek eredményei összehasonlíthatók a standard algoritmusok eredményeivel.
-Az algoritmusokat Python-ban fogjuk bemutatni, és a NetworkX könyvtárat \cite{hagberg2008exploring} fogjuk használni különféle gráfműveletek elvégzésére.
+Ebben a dolgozatban a CNDP-t két szemszögből fogjuk megközelíteni: egy egycélú, illetve egy kétcélú nézőpontból.
+A CNDP egycélú megfogalmazása esetén a páronkénti konnektivitást szeretnénk minimalizálni, míg a kétcélú CNDP (BOCNDP) esetén maximalizálni akarjuk a gráf összefüggő komponenseinek a számát, de ugyanakkor minimalizálni ezen komponensek számosságainak a varianciáját.
+A CNDP megoldására három különböző algoritmust mutatunk be: egy mohó, egy genetikus, valamint egy memetikus algoritmust.
+A BOCNDP esetén hat multikritériumú genetikus algoritmust fogunk használni (NSGAII, PAES stb.), amely algoritmusok esetén különböző dominancia operátorokkal kísérletezünk, mint például a Pareto-, Nash- vagy Berge-dominancia.
+Továbbá különböző intelligens inicializálási módszereket mutatunk be (DFS, véletlen séta stb.), amelyek a kezdeti populáció egyedeit oly módon építik fel, hogy figyelembe veszik a gráf szerkezetét.
+Végezetül az algoritmusokat összehasonlítjuk egymással különböző szintetikus, illetve való világból inspirált bemenetekre (Barabási–Albert, Forest-fire stb.), és a hipertérfogat indikátor segítségével mérjük mindegyik algoritmus teljesítményét.

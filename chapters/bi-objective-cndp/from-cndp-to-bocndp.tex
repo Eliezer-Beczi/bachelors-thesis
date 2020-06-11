@@ -1,11 +1,12 @@
-\section{A CNDP-től a BOCNDP-ig}
+\section{A CNDP-től a BOCNDP-ig}\label{sec:FROM_CNDP_TO_BOCNDP}
+
 
 Az egycélú CNDP-től úgy jutunk el a kétcélú CNDP-ig, hogy ebben az esetben két függvényt fogunk optimalizálni.
 Míg a CNDP esetén \aref{eqn:PAIRWISE_CONNECTIVITY} képlettel leírt függvény minimalizálása volt a feladat,
 addig a BOCNDP esetén két célfüggvényünk van, amelyeket optimalizálni szeretnénk $k$ csomópont kitörlése után a $G$ gráfból:
 \begin{enumerate}
   \item Maximalizálni szeretnénk az összefüggő komponensek számát.
-  \item Minimalizálni szeretnénk az összefüggő komponensek számosságának a varianciáját.
+  \item Minimalizálni szeretnénk az összefüggő komponensek számosságainak a varianciáját.
 \end{enumerate}
 
 Ennek érdekében a következő két célfüggvényt vezetjük be:
@@ -41,7 +42,7 @@ míg \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlet implementációját \are
 
 \lstinputlisting[
   language={Python},
-  caption={Az összefüggő komponensek számosságának a varianciája},
+  caption={Az összefüggő komponensek számosságainak a varianciája},
   label={lst:CARDINALITY-VARIANCE-COMPONENTS}
 ]{progfiles/bi-objective-cndp/cardinality_variance_components.py}
 

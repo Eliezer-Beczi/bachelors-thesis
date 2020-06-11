@@ -1,7 +1,22 @@
+\clearpage
 \section{Kísérleti eredmények}
 
-\begin{table}
+
+\Aref{sec:KISERLETI_ELOKESZITES}. részben ismertetett multikritériumú genetikus algoritmusokat \aref{sec:BENCHMARK-PROBLEM-INSTANCES}. részben bemutatott gráfokon teszteltük.
+Mindegyik bemenet esetén tízszer futtattuk le az algoritmusokat, és feltüntettük a BOCNDP két célfüggvényére (lásd \aref{sec:FROM_CNDP_TO_BOCNDP}. részt) kapott megoldások átlagát ($\mu$) és szórását ($\sigma$).
+Ugyanakkor kiemeltük mindegyik bemenet esetén az elért legjobb megoldást.
+A különböző tesztelések során kapott eredményeket \aref{tab:BOCNDP_RESULTS}., \aref{tab:BOCNDP_NASH_BERGE_RESULTS}. és \aref{tab:BOCNDP_SMART_INIT_RESULTS}. táblázatok szemléltetik.
+
+Az algoritmusok hatékonyabb összehasonlítása végett a \citeN{fonseca2006improved} által kifejlesztett algoritmust fogjuk használni, amely egy nem-dominált megoldásokból álló front hipertérfogatát számolja ki.
+A hipertérfogat azt mondja meg, hogy a frontot alkotó nem-dominált megoldások a megoldástér mekkora részét fedik le egy referenciaponthoz viszonyítva.
+A multikritériumú genetikus algoritmusok a különböző gráfokra kapott Pareto-frontjainak a hipertérfogatait \aref{tab:BOCNDP_HYPERVOLUME}. és \aref{tab:BOCNDP_SMART_INIT_HYPERVOLUME}. táblázatok szemléltetik.
+
+
+\begin{table}[b]
   \centering
+  \caption{
+    A hat multikritériumú genetikus algoritmus eredményei a BOCNDP két célfüggvényére.
+  }\label{tab:BOCNDP_RESULTS}
   \resizebox{\textwidth}{!}{%
     \begin{tabular}{
         |l||
@@ -52,8 +67,11 @@
   }
 \end{table}
 
-\begin{table}
+\begin{table}[t]
   \centering
+  \caption{
+    Az NSGAII eredményei a BOCNDP két célfüggvényére a Nash-dominanciát és a Berge-dominanciát használva.
+  }\label{tab:BOCNDP_NASH_BERGE_RESULTS}
   \resizebox{\textwidth}{!}{%
     \begin{tabular}{
         |l||
@@ -85,8 +103,11 @@
   }
 \end{table}
 
-\begin{table}
+\begin{table}[b]
   \centering
+  \caption{
+    Az NSGAII eredményei a BOCNDP két célfüggvényére a három intelligens inicializálási módszert használva.
+  }\label{tab:BOCNDP_SMART_INIT_RESULTS}
   \resizebox{\textwidth}{!}{%
     \begin{tabular}{
         |l||
@@ -125,8 +146,11 @@
   }
 \end{table}
 
-\begin{table}
+\begin{table}[b]
   \centering
+  \caption{
+    A hat multikritériumú genetikus algoritmus Pareto-frontjainak a hipertérfogata.
+  }\label{tab:BOCNDP_HYPERVOLUME}
   \resizebox{\textwidth}{!}{%
     \begin{tabular}{
         l
@@ -153,8 +177,11 @@
   }
 \end{table}
 
-\begin{table}
+\begin{table}[b]
   \centering
+  \caption{
+    Az NSGAII Pareto-frontjainak a hipertérfogata a három intelligens inicializálási módszert használva.
+  }\label{tab:BOCNDP_SMART_INIT_HYPERVOLUME}
   \resizebox{\textwidth}{!}{%
     \begin{tabular}{
         l

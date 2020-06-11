@@ -1,10 +1,9 @@
 \section{Memetikus algoritmus}\label{sec:MEMETIKUS_ALGORITMUS}
 
-Ahhoz, hogy ne teljesen véletlen megoldásokból induljunk ki \aref{alg:GENETIKUS_ALGORITMUS}
-kódrészlettel szemléltetett genetikus algoritmus esetén,
+Ahhoz, hogy ne teljesen véletlen megoldásokból induljunk ki \aref{alg:GENETIKUS_ALGORITMUS} genetikus algoritmus esetén,
 ezért a kezdeti populáció egy részét \aref{alg:GREEDY_ALGORITMUS} algoritmus segítségével fogjuk kigenerálni.
 Ugyan a populáció inicializálása így több időt fog igénybe venni,
 de a megoldások egy része a bemeneti gráf struktúráját figyelembe véve lesznek meghatározva.
-Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:SMART-INIT} algortimus, amely a kezdeti populáció $10\%$-át okosan generálja ki,
+Ezt szemlélteti \aref{alg:GENETIKUS-ALGORITMUS:SMART-INIT} algoritmus, amely a kezdeti populáció $10\%$-át okosan generálja ki,
 a maradék $90\%$-át pedig véletlenül, felhasználva \aref{alg:GENETIKUS-ALGORITMUS:RANDOM-SOLUTION} algoritmust.
 \input{progfiles/single-objective-cndp/ga/ga_smart_init}

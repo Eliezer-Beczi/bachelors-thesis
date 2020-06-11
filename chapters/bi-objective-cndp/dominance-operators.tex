@@ -108,7 +108,7 @@ Az előbb bevezetett jelölések segítségével bevezethetjük a nem-kooperatí
 Legyen $x$ és $y$ két stratégiaprofil $S$-ből.
 Bevezetünk egy $k \colon S \times S \to \mathbb{N}$ operátort, amely az $\left( x, y \right)$ pároshoz hozzárendeli a következő halmaz számosságát:
 \[
-  \left\{ i \in I \mid u_i(y_i, x_i) \ge u_i(x), y_i \neq x_i \right\}.
+  k(x, y) = \left\{ i \in I \mid u_i(y_i, x_i) \ge u_i(x), y_i \neq x_i \right\}.
 \]
 
 A halmaz azon $i$ játékosokat tartalmazza, akik adott $x$ stratégiaprofil esetén, hasznot húznának abból, ha megváltoztatnák stratégiájukat $x_i$-ről $y_i$-re.
@@ -299,7 +299,7 @@ A következőkben egy példán keresztül szeretnénk szemléltetni a Berge-egye
 Legyen $x$ és $y$ két stratégiaprofil $S$-ből.
 Bevezetünk egy $b \colon S \times S \to \mathbb{N}$ operátort, amely az $\left( x, y \right)$ pároshoz hozzárendeli a következő halmaz számosságát:
 \[
-  \left\{ i \in I \mid u_i(x_i, y_i) \ge u_i(x), y_i \neq x_i \right\}.
+  b(x, y) = \left\{ i \in I \mid u_i(x_i, y_i) \ge u_i(x), y_i \neq x_i \right\}.
 \]
 
 A halmaz azon $i$ játékosokat tartalmazza, akik adott $x$ stratégiaprofil esetén, hasznot húznának abból, ha valamelyik másik játékos megváltoztatná stratégiáját $y_i$-ről $x_i$-re.

@@ -40,7 +40,7 @@ Ezt az osztályt mi úgy neveztük el, hogy \emph{NashDominance}, és a \emph{Do
 
 A \emph{compare} eljárás fog két megoldást - $x$ és $y$ - összehasonlítani, és visszatéríti, hogy melyik Nash-dominálja melyiket, vagy hogy egyik sem dominálja a másikat.
 A metódus \aref{lst:NO-CONNECTED-COMPONENTS}. és \aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészletekkel szemléltetett függvényeket használja:
-az első a gráf összefüggő komponenseit számolja ki, a második pedig az összefüggő komponensek számosságának a varianciáját (lásd \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} egyenletet).
+az első a gráf összefüggő komponenseit számolja ki, a második pedig az összefüggő komponensek számosságainak a varianciáját (lásd \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} egyenletet).
 Ezeket a célfüggvényeket akarjuk optimalizálni: az elsőt maximalizálni, míg a másodikat minimalizálni.
 
 
@@ -74,7 +74,7 @@ Megmondjuk, hogy a döntési változót a $G$ gráf csomóponthalmazának egy $k
 
 Ezután felülírjuk a \emph{Problem} osztály \emph{evaluate} metódusát. Itt történik egy megoldás tényleges kiértékelése.
 Beállítjuk mint első célfüggvény \aref{lst:NO-CONNECTED-COMPONENTS}. kódrészlettel leírt függvényt, ami a $G$ gráf összefüggő komponenseinek a számát téríti,
-\aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlettel leírt függvényt pedig, ami az összefüggő komponensek számosságának a varianciáját téríti, mint második célfüggvény.
+\aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlettel leírt függvényt pedig, ami az összefüggő komponensek számosságainak a varianciáját téríti, mint második célfüggvény.
 Ahogy az imént említettük, az első célfüggvényt maximalizálni, míg a másodikat minimalizálni fogjuk.
 
 
