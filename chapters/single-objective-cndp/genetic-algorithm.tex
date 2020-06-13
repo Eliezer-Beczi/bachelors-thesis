@@ -18,14 +18,14 @@ az előzőnél valamelyest rátermettebb egyedeket tartalmaz, és így a keresé
 egyre jobb megoldások születnek.
 
 
-\subsection{Saját genetikus algoritmus}
-Egy Genetikus Algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
+\subsection{Az iGA algoritmus}
+Egy genetikus algoritmus (GA) standard algoritmikus keretrendszerét használjuk fel.
 Generálunk egy kezdeti populációt megoldásokkal. Utána keresztezzük őket, hogy új megoldásokat kapjunk,
 amelyeket pedig mutálunk. Ezután rendezzük a régi és új megoldásokat egy fitnesz függvény alapján,
 és létrehozunk egy új populációt eltávolítva a rossz megoldásokat.
 A folyamatot addig ismételjük, amíg az iterációk száma el nem ér egy felső korlátot.
 Az algoritmus végén visszatérítjük a legjobb megoldást.
-A CNDP esetén a genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} algoritmus szemlélteti.
+Az iGA genetikus algoritmust \aref{alg:GENETIKUS_ALGORITMUS} algoritmus szemlélteti.
 \input{progfiles/single-objective-cndp/ga/genetic_algorithm}
 
 

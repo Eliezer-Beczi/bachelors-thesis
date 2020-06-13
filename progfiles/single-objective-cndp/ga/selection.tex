@@ -1,10 +1,9 @@
 \begin{algorithm}[h]
   \caption{Selection Operator}\label{alg:GENETIKUS-ALGORITMUS:SZELEKCIO}
   \begin{algorithmic}[1]
-    \Function{Selection}{$N, P, P'$}
+    \Require $N, P, P'$
     \State $P \leftarrow P \cup P'$
     \State \Call{Sort}{$P$}\Comment{Sort individuals by fitness function in ASC order}
     \State \Return $P\left[ {:}\,N \right]$\Comment{Take best $N$ solutions}
-    \EndFunction
   \end{algorithmic}
 \end{algorithm}

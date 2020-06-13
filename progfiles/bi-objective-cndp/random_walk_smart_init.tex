@@ -1,7 +1,7 @@
 \begin{algorithm}
   \caption{Random walk solution generator}\label{alg:RANDOM-WALK-SMART-INIT}
   \begin{algorithmic}[1]
-    \Function{Random Walk Generator}{$G, k, t, p_r$}
+    \Require $G, k, t, p_r$
     \State $visited \leftarrow \emptyset$
 
     \While{$True$}
@@ -33,6 +33,5 @@
 
     \State $\Call{Sort}{visited}$\Comment{Sort nodes in $visited$ according to visits paid in DESC order}
     \State \Return $visited\left[ {:}\,k \right]$\Comment{Take the first $k$ most visited nodes}
-    \EndFunction
   \end{algorithmic}
 \end{algorithm}

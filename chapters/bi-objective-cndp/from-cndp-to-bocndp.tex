@@ -26,10 +26,8 @@ ahol $n^{*} = \sum_{h \in H} \abs{h}$ a $G\left[ V \setminus S \right]$ feszíte
 
 \Aref{eqn:MAX_CONNECTED_COMPONENTS} és \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS}
 képletekkel leírt problémát úgy ismerjük az irodalomban \cite{ventresca2018bi}, mint \textbf{BOCNDP}.
-A CNDP is ugyanerre a problémára nyújt megoldást azáltal,
-hogy ezt a két függvényt egyesíti \aref{eqn:PAIRWISE_CONNECTIVITY} függvényben,
-melynek minimalizálása (lásd \aref{eqn:MIN_PAIRWISE_CONNECTIVITY} egyenletet) maximalizálni fogja a komponensek számát, amelyekre szétesik az eredeti gráf,
-de ugyanakkor minimalizálja is a komponensek közötti varianciát.
+Hasonlóan van megfogalmazva, mint a CNDP, viszont alapjában véve különbözik tőle.
+Mindkettő ugyanazt a problémát oldja meg ugyan, de a megoldásokat nem lehet jelentőségteljesen összehasonlítani, mint ahogy ezt \citeN{ventresca2018bi} bebizonyították.
 
 A $H$ halmaz számosságának meghatározását \aref{lst:NO-CONNECTED-COMPONENTS}. kódrészlet mutatja be Python-ban,
 míg \aref{eqn:CARDINALITY_VARIANCE_COMPONENTS} képlet implementációját \aref{lst:CARDINALITY-VARIANCE-COMPONENTS}. kódrészlet.

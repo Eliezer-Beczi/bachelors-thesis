@@ -14,9 +14,9 @@ addig a jövőben meghozott döntésektől független.
 Az algoritmus minden lépésben mohón választ, folyamatosan lebontva a feladatot kisebb feladattá.
 Más szavakkal, a mohó algoritmus soha nem gondolja újra választásait.
 
-\subsection{Saját mohó algoritmus}
-A mohó algoritmus kiindul a gráf csúcslefedéséből\footnote{ Angolul: vertex cover.}, ez lesz a kezdeti $S$ megoldásunk.
-A maradék csomópontok $V \setminus S$  a gráf maximális független csúcshalmazát\footnote{ Angolul: maximal independent set.} $\left( \textit{MIS} \right)$ alkotják.
+\subsection{Az iGreedy algoritmus}
+Az iGreedy egy mohó algoritmus, amely a gráf csúcslefedéséből\footnote{ Angolul: vertex cover.} indul ki, ez lesz a kezdeti $S$ megoldásunk.
+A maradék csomópontok $V \setminus S$ a gráf maximális független csúcshalmazát\footnote{ Angolul: maximal independent set.} $\left( \textit{MIS} \right)$ alkotják.
 Mivel majdnem biztos, hogy a megoldásunkban több, mint k csomópont lesz, ezért mohón elkezdünk kivenni csomópontokat $S$-ből,
 majd ezeket hozzáadni \emph{MIS}-hez, amíg $\abs{S} > k$.
 A hozzáadott csomópont az lesz, amelyiket ha visszatesszük az eredeti gráfba,
@@ -27,5 +27,5 @@ akkor ugyanazt a minimális értéket adják vissza a páronkénti konnektivitá
 ezért ezeket eltároljuk a B halmazban, és minden lépésben random módon határozzuk meg,
 hogy melyik kerüljön vissza \emph{MIS}-be. Ezzel az eljárással garantáljuk,
 hogy a mohó algoritmusunk különböző megoldásokat fog adni többszöri futtatás esetén.
-A CNDP esetén a mohó algoritmust \aref{alg:GREEDY_ALGORITMUS} algoritmus szemlélteti.
+Az iGreedy mohó algoritmust \aref{alg:GREEDY_ALGORITMUS} algoritmus szemlélteti.
 \input{progfiles/single-objective-cndp/greedy/greedy_algorithm}

@@ -1,7 +1,7 @@
 \begin{algorithm}[t]
   \caption{Genetic Algorithm}\label{alg:GENETIKUS_ALGORITMUS}
   \begin{algorithmic}[1]
-    \Function{GA}{$G, k, N, \pi_{\min}, \pi_{\max}, \Delta \pi, \alpha, t_{\max}$}
+    \Require $G, k, N, \pi_{\min}, \pi_{\max}, \Delta \pi, \alpha, t_{\max}$
     \State $t \leftarrow 0$
     \State \Call{Init}{$N, P, S^{*}, \gamma, \pi$}
 
@@ -14,6 +14,5 @@
     \EndWhile
 
     \State \Return $P$
-    \EndFunction
   \end{algorithmic}
 \end{algorithm}

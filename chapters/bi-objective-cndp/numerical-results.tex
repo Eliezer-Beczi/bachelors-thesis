@@ -11,6 +11,9 @@ Az algoritmusok hatékonyabb összehasonlítása végett a \citeN{fonseca2006imp
 A hipertérfogat azt mondja meg, hogy a frontot alkotó nem-dominált megoldások a megoldástér mekkora részét fedik le egy referenciaponthoz viszonyítva.
 A multikritériumú genetikus algoritmusok a különböző gráfokra kapott Pareto-frontjainak a hipertérfogatait \aref{tab:BOCNDP_HYPERVOLUME}. és \aref{tab:BOCNDP_SMART_INIT_HYPERVOLUME}. táblázatok szemléltetik.
 
+A hipertérfogatok kiszámításához szükséges referenciapontot úgy határozzuk meg egy adott bemenet esetén,
+hogy kiválasztjuk az algoritmusok adta Pareto-frontok egyesítéséből származó nem-dominált megoldások halmazából azt a pontot, amelyiket minden más pont dominál.
+
 
 \begin{table}[b]
   \centering

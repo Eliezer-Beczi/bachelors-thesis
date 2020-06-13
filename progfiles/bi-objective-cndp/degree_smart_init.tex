@@ -1,7 +1,7 @@
 \begin{algorithm}[t]
   \caption{Degree solution generator}\label{alg:DEGREE-SMART-INIT}
   \begin{algorithmic}[1]
-    \Function{Degree Generator}{$G, k, x$}
+    \Require $G, k, x$
     \State $V' \leftarrow \Call{Sorted}{V}$\Comment{Sort nodes according to their degree in DESC order}
     \State $S \leftarrow V'\left[ {:}\,x \right]$\Comment{Take first $x$ nodes with the highest degree}
 
@@ -14,6 +14,5 @@
 
     \State $\Call{Shuffle}{S}$
     \State \Return $S$
-    \EndFunction
   \end{algorithmic}
 \end{algorithm}

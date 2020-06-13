@@ -1,7 +1,7 @@
-\begin{algorithm}[h]
+\begin{algorithm}[t]
   \caption{Mutation Operator}\label{alg:GENETIKUS_ALGORITMUS:MUTACIO}
   \begin{algorithmic}[1]
-    \Function{Mutation}{$k, N, P, \pi$}
+    \Require $k, N, P, \pi$
     \State $P' \leftarrow \emptyset$
 
     \For{$i \leftarrow 1, N$}
@@ -30,6 +30,5 @@
     \EndFor
 
     \State \Return $P'$
-    \EndFunction
   \end{algorithmic}
 \end{algorithm}
