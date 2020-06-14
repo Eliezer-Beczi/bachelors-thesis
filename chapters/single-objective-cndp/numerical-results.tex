@@ -1,6 +1,15 @@
-\section{Kísérleti eredmények}
+\section{Kísérleti előkészítés és eredmények}
 
 
+\subsection{Előkészítés}
+Az iGA genetikus algoritmus esetén használt paraméterek:
+$N = 20$ a populáció mérete;
+$\pi_{\min} = 50$, $\pi_{\max} = 90$ és $\Delta \pi = 2.5$ szabályozzák a mutáció valószínűségét;
+$\alpha = 2$ befolyásolja a populáció változatosságát;
+$t_{\max} = 100$ a maximális iterációszám.
+
+
+\subsection{Eredmények}
 \Aref{sec:MOHO_ALGORITMUS}., \aref{sec:GENETIKUS_ALGORITMUS}. és \aref{sec:MEMETIKUS_ALGORITMUS}. részekben bemutatott mohó (Grd), genetikus (GA) és memetikus (MA) algoritmusokat négy különböző gráfon teszteltük.
 Mindegyik bemenet esetén tízszer futtattuk le az algoritmusokat, és feltüntettük a CNDP célfüggvényére (lásd \aref{sec:PAIRWISE_CONNECTIVITY}. részt) kapott megoldások átlagát ($\mu$) és szórását ($\sigma$).
 Ugyanakkor kiemeltük mindegyik bemenet esetén az elért legjobb megoldást.
@@ -11,7 +20,7 @@ A tesztelés eredményeit \aref{tab:CNDP_RESULTS}. táblázat szemlélteti, ahon
   \caption{
     A három algoritmus eredményei a CNDP célfüggvényére.
   }\label{tab:CNDP_RESULTS}
-  \resizebox{\textwidth}{!}{%
+  \resizebox{.8\textwidth}{!}{%
     \begin{tabular}{
         |l||
         r

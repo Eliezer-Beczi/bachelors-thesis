@@ -4,6 +4,7 @@ Ebben a részben bemutatjuk a BOCNDP probléma megoldására javasolt genetikus 
 Az algoritmusok a \emph{Platypus keretrendszerben} \cite{hadka2017platypus} találhatóak, a keretrendszer által biztosított osztályokat fogjuk használni.
 
 \begin{description}
+      \itemsep-0.5em
       \item[NSGAII] -- Az NSGAII (Non-dominated Sorting Genetic Algorithm II) \cite{deb2002fast} az egyik legnépszerűbb többcélú optimalizáló algoritmus,
             amely az NSGA továbbfejlesztett változata. Az NSGAII a megszokott rekombinációs és mutációs genetikai operátorokon kívül,
             amelyek új egyedek létrehozásáért felelősek, két másik különleges mechanizmust használ a következő generáció populációjának létrehozásához:
@@ -32,3 +33,11 @@ Az algoritmusok a \emph{Platypus keretrendszerben} \cite{hadka2017platypus} tal�
       \item[EpsNSGAII] -- Az EpsNSGAII (Epsilon NSGAII) \cite{kollat2005value} az NSGAII egy kibővített változata, amely $\epsilon$-dominancia archiválást használ.
             Továbbá, véletlenszerű újraindítás jellemzi, biztosítva ezáltal egy változatosabb megoldáshalmazt.
 \end{description}
+
+Mindegyik algoritmus esetén a Platypus keretrendszer által felkínált alapértelmezett paramétereket használjuk:
+$N = 100$ a populáció mérete;
+$k = 2$ nagyságú versengő kiválasztás;
+SSX keresztezés;
+$\epsilon = 0.05$;
+$c = 100$ az archívum kapacitása, és $b = 8$ a kettéosztások száma;
+$t_{\max} = 10\,000$ az iterációszám.
